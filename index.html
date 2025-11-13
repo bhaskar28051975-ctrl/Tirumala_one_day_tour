@@ -16,35 +16,37 @@ body {
   background: #f4f6f8;
   color: #111;
 }
+
+/* Banner Section */
 .hero {
   position: relative;
-  background: url('https://upload.wikimedia.org/wikipedia/commons/2/24/Tirumala_hills_view.jpg') center/cover no-repeat;
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThAlK2v-XnN6bvgiY4AGhg82oo0rIGT3BMWeCYIm-7jA&s=10') no-repeat center center/cover;
   color: white;
   text-align: center;
-  padding: 100px 16px;
+  padding: 80px 16px;
 }
 .hero::after {
   content: "";
   position: absolute;
-  top: 0; left: 0;
+  left: 0; top: 0;
   width: 100%; height: 100%;
   background: rgba(0,0,0,0.45);
 }
-.hero-content {
+.hero h1, .hero h2 {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 .hero h1 {
+  font-size: 28px;
   margin: 0;
-  font-size: 30px;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+  font-weight: 700;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
 }
 .hero h2 {
-  margin: 8px 0 0;
+  margin-top: 10px;
   font-size: 18px;
-  color: #fff;
+  color: #ffeaa7;
   font-weight: 600;
-  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
 .btn {
   background: var(--accent);
@@ -54,16 +56,19 @@ body {
   text-decoration: none;
   display: inline-block;
   font-weight: 700;
+  margin-top: 14px;
+  position: relative;
+  z-index: 2;
 }
 .container {
   max-width: 980px;
-  margin: 18px auto;
+  margin: 20px auto;
   padding: 0 12px;
 }
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 .card {
   background: var(--card-bg);
@@ -92,7 +97,10 @@ footer {
   margin: 22px 0;
   text-align: center;
   color: #444;
+  font-size: 14px;
 }
+
+/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -138,21 +146,18 @@ footer {
 <body>
 
 <section class="hero">
-  <div class="hero-content">
-    <h1>Tirumala One Day Tour</h1>
-    <h2>by Raju Naik – Tirumala Taxi Driver 🚕</h2>
-    <div style="margin-top:12px">
-      <a class="btn" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20book%20Tirumala%20One%20Day%20Tour.">📱 Chat on WhatsApp</a>
-    </div>
-  </div>
+  <h1>Tirumala One Day Tour</h1>
+  <h2>by Raju Naik – Tirumala Taxi Driver 🚕</h2>
+  <a class="btn" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20know%20about%20your%20Tirumala%20one%20day%20tour%20packages.">📲 Chat on WhatsApp</a>
 </section>
 
 <div class="container">
-  <h2 style="color:var(--dark)">Popular Tirumala Sightseeing Spots</h2>
+  <h2 style="color:var(--dark);text-align:center;">Popular Tirumala Sightseeing Spots</h2>
   <div class="grid" id="packagesGrid"></div>
-  <footer>Powered by <b>BR Info Pvt Ltd</b></footer>
+  <footer>© 2025 | Powered by <b>BR Info Pvt Ltd</b></footer>
 </div>
 
+<!-- Modal -->
 <div id="modal" class="modal" onclick="closeModal(event)">
   <div class="box" onclick="event.stopPropagation()">
     <img id="modalImg" src="" alt="">
@@ -160,7 +165,7 @@ footer {
       <h3 id="modalTitle"></h3>
       <p id="modalText"></p>
       <div class="actions">
-        <a id="bookBtn" class="btn" href="#">📱 Book on WhatsApp</a>
+        <a id="bookBtn" class="btn" href="#">📲 Book on WhatsApp</a>
         <a class="btn" href="#" onclick="hideModal()">Close</a>
       </div>
     </div>
@@ -176,7 +181,7 @@ const packages = [
     title: "Sree Vari Padalu, Tirumala",
     img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgNhA5eywPCrjipY8W9CmmiDQ0YD0jO_ENZUYmlQuB6_UK9hBTKP_m56M&s",
     short: "Sacred footprints of Lord Venkateswara atop Narayanagiri Hill.",
-    long: "Sree Vari Padalu are believed to be the exact spot where Lord Venkateswara first set foot on Tirumala hills."
+    long: "Sree Vari Padalu are believed to be the spot where Lord Venkateswara first set foot on Tirumala hills."
   },
   {
     title: "Sila Thoranam, Tirumala",
@@ -194,7 +199,7 @@ const packages = [
     title: "Akasha Ganga, Tirumala",
     img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyDCOzxi4EmSOa4TULBuuPqN4LFEChwrZUWbSChkC109oelmQ4Kj1x0x5cinp0Gy51ybFJExcrFOiUgy-hr4dNCX-DmzqNf4tGA-tZfb2WbFAa451SDY-3eBGPGoek3q8d176tf6g=s1328-w720-h1328-rw",
     short: "Waterfall where holy water for rituals is drawn daily.",
-    long: "Akasha Ganga is an ancient sacred waterfall whose water is used in daily temple rituals."
+    long: "Akasha Ganga is a sacred waterfall whose water is used in the daily rituals at Tirumala Temple."
   },
   {
     title: "Venu Gopala Swamy Temple",
@@ -206,7 +211,7 @@ const packages = [
     title: "Japali Theertham",
     img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSz9sTA8deK5pRXqucjul2ncN4ZzM1kwMt3zMShcWCn0p3udbtIb1RchazsydgeVdy_HrTfLn-xgzXpYld-GcZyr9akevUiyIJgHwN19HJ3ZfNMMAWN5FWcJtHdHjs0SbOMhm0M=s520-w520-h416-n-k-no",
     short: "Forest temple dedicated to Lord Hanuman.",
-    long: "Japali Hanuman Temple lies deep within the Tirumala forest, believed to be visited by Lord Hanuman."
+    long: "Japali Hanuman Temple lies deep within the Tirumala forest, believed to have been visited by Lord Hanuman."
   }
 ];
 
