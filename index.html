@@ -1,158 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Tirumala One Day Tour – by Raju Naik</title>
 <style>
-  :root {
-    --accent: #0077cc;
-    --dark: #083a61;
-    --card-bg: rgba(255,255,255,0.97);
-  }
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #f4f6f8;
-    color: #111;
-  }
-  .hero {
-    background: linear-gradient(135deg, var(--dark), #005fa3);
-    color: white;
-    padding: 40px 16px;
-    text-align: center;
-  }
-  .hero h1 {
-    margin: 0;
-    font-size: 28px;
-  }
-  .hero h2 {
-    margin: 8px 0 0;
-    font-size: 16px;
-    color: #aad7ff;
-    font-weight: 600;
-  }
-  .btn {
-    background: var(--accent);
-    color: #fff;
-    padding: 10px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: 700;
-  }
-  .container {
-    max-width: 980px;
-    margin: 18px auto;
-    padding: 0 12px;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 14px;
-  }
-  .card {
-    background: var(--card-bg);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-    transition: transform 0.2s ease;
-  }
-  .card:hover {
-    transform: translateY(-4px);
-  }
-  .card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-  }
-  .card .body {
-    padding: 12px;
-  }
-  .card h3 {
-    margin: 6px 0;
-    font-size: 18px;
-    color: var(--dark);
-  }
-  .card p.desc {
-    font-size: 14px;
-    color: #333;
-  }
-  footer {
-    margin: 28px 0 16px;
-    text-align: center;
-    color: #444;
-    font-size: 14px;
-  }
-  footer a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  /* Modal styles */
-  .modal {
-    display: none;
-    position: fixed;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-    z-index: 999;
-  }
-  .modal .box {
-    background: #fff;
-    max-width: 720px;
-    margin: 6% auto;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .modal img {
-    width: 100%;
-    height: 260px;
-    object-fit: cover;
-  }
-  .modal .cont {
-    padding: 14px;
-    text-align: left;
-    color: #111;
-  }
-  .modal h3 {
-    margin: 0 0 8px;
-    color: var(--dark);
-  }
-  .modal p {
-    font-size: 14px;
-    line-height: 1.5;
-    color: #333;
-  }
-  .modal .actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 12px;
-  }
+:root {
+  --accent: #0077cc;
+  --dark: #083a61;
+  --card-bg: rgba(255,255,255,0.97);
+}
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f6f8;
+  color: #111;
+}
+.hero {
+  position: relative;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/2/24/Tirumala_hills_view.jpg') center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 100px 16px;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 30px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+}
+.hero h2 {
+  margin: 8px 0 0;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+}
+.btn {
+  background: var(--accent);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  font-weight: 700;
+}
+.container {
+  max-width: 980px;
+  margin: 18px auto;
+  padding: 0 12px;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 14px;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card .body {
+  padding: 12px;
+}
+.card h3 {
+  margin: 6px 0;
+  font-size: 18px;
+  color: var(--dark);
+}
+.card p.desc {
+  font-size: 14px;
+  color: #333;
+}
+footer {
+  margin: 22px 0;
+  text-align: center;
+  color: #444;
+}
+.modal {
+  display: none;
+  position: fixed;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 999;
+}
+.modal .box {
+  background: #fff;
+  max-width: 720px;
+  margin: 6% auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.modal img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+.modal .cont {
+  padding: 14px;
+  text-align: left;
+  color: #111;
+}
+.modal h3 {
+  margin: 0 0 8px;
+  color: var(--dark);
+}
+.modal p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+.modal .actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
 </style>
 </head>
 <body>
 
 <section class="hero">
-  <h1>Tirumala One Day Tour</h1>
-  <h2>by Raju Naik – Tirumala Taxi Driver 🚕</h2>
-  <div style="margin-top:12px">
-    <a class="btn" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20book%20your%20Tirumala%20one%20day%20tour%20package.">📲 Chat on WhatsApp</a>
+  <div class="hero-content">
+    <h1>Tirumala One Day Tour</h1>
+    <h2>by Raju Naik – Tirumala Taxi Driver 🚕</h2>
+    <div style="margin-top:12px">
+      <a class="btn" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20book%20Tirumala%20One%20Day%20Tour.">📱 Chat on WhatsApp</a>
+    </div>
   </div>
 </section>
 
 <div class="container">
-  <h2 style="color:var(--dark)">Popular Sightseeing Spots</h2>
+  <h2 style="color:var(--dark)">Popular Tirumala Sightseeing Spots</h2>
   <div class="grid" id="packagesGrid"></div>
-
-  <footer>
-    <a class="btn" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20please%20share%20your%20Tirumala%20Tour%20details.">📲 Contact on WhatsApp</a>
-    <p>Powered by <b>BR Info Pvt Ltd</b></p>
-  </footer>
+  <footer>Powered by <b>BR Info Pvt Ltd</b></footer>
 </div>
 
-<!-- Modal -->
 <div id="modal" class="modal" onclick="closeModal(event)">
   <div class="box" onclick="event.stopPropagation()">
     <img id="modalImg" src="" alt="">
@@ -160,7 +160,7 @@
       <h3 id="modalTitle"></h3>
       <p id="modalText"></p>
       <div class="actions">
-        <a id="bookBtn" class="btn" href="#">📲 Book on WhatsApp</a>
+        <a id="bookBtn" class="btn" href="#">📱 Book on WhatsApp</a>
         <a class="btn" href="#" onclick="hideModal()">Close</a>
       </div>
     </div>
@@ -174,46 +174,46 @@ const driverNumber = "919154095125";
 const packages = [
   {
     title: "Sree Vari Padalu, Tirumala",
-    img: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Srivari_Padalu_Tirumala.jpg",
-    short: "Sacred footprints of Lord Venkateswara atop Narayanagiri Hill — oldest divine site in Tirumala.",
-    long: "Sree Vari Padalu are believed to be the exact spot where Lord Venkateswara first set foot on Tirumala hills. Located on the highest peak of Narayanagiri, it offers a serene view of the temple town below. Pilgrims climb to this sacred hilltop to bow before the divine footprints, symbolizing devotion and humility."
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgNhA5eywPCrjipY8W9CmmiDQ0YD0jO_ENZUYmlQuB6_UK9hBTKP_m56M&s",
+    short: "Sacred footprints of Lord Venkateswara atop Narayanagiri Hill.",
+    long: "Sree Vari Padalu are believed to be the exact spot where Lord Venkateswara first set foot on Tirumala hills."
   },
   {
     title: "Sila Thoranam, Tirumala",
-    img: "https://upload.wikimedia.org/wikipedia/commons/8/83/Sila_Thoranam_Tirumala.jpg",
-    short: "A natural rock arch formation, one of the rare geological wonders of India.",
-    long: "Sila Thoranam is a naturally formed rock arch near the temple town, believed to date back millions of years. This geological marvel, shaped like a gateway, holds religious significance as it resembles the symbols found in the idol of Lord Venkateswara. The area around the arch is calm and scenic, ideal for photography and peaceful walks."
+    img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxJ7O8YmvoZYAGezAUYNgzxnb1JEs3gy-8NNPCQHhpwOEV5GIAGWsqnKcZYRD-2wboeIY86LrZI7vaiFdDFt743ej0zV9RuGbgAAVqM9YVJ6IWz2_sGjwqMVz6m-L0I5_tOm43UkA=s520-w520-h416-n-k-no",
+    short: "Natural rock arch formation — one of India's rare wonders.",
+    long: "Sila Thoranam is a naturally formed rock arch near Tirumala Temple, dating back millions of years."
   },
   {
     title: "Papavinasanam, Tirumala",
-    img: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Papavinasanam_Tirumala_Waterfalls.jpg",
-    short: "Sacred waterfall believed to wash away sins — a must-visit for spiritual cleansing.",
-    long: "Papavinasanam, literally meaning 'destruction of sins', is a holy waterfall situated a few kilometers from Tirumala. Pilgrims take a dip here to purify themselves before darshan. Surrounded by forested hills, the location provides natural beauty and spiritual tranquility. The water flows from the Tirumala hills and is considered extremely sacred."
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjQKCOUX8qe4JhGLolCec5uaHPWOf_JMS1N89RE7c7U1K-mnyN0hyMvAI&s",
+    short: "Sacred waterfall believed to wash away sins.",
+    long: "Papavinasanam, meaning 'Destruction of Sins', is a holy waterfall a few km from Tirumala."
   },
   {
     title: "Akasha Ganga, Tirumala",
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/66/Akasha_Ganga_Tirumala.jpg",
-    short: "A sacred waterfall where holy water for temple rituals is drawn daily.",
-    long: "Akasha Ganga is an ancient waterfall mentioned in the Vedas. It is believed to have divine origin, and the water is still used in the daily rituals of the Tirumala temple. The area is accessible via a well-maintained road and a short trek. The sound of gushing water and forest ambiance make it a refreshing spiritual stop."
+    img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyDCOzxi4EmSOa4TULBuuPqN4LFEChwrZUWbSChkC109oelmQ4Kj1x0x5cinp0Gy51ybFJExcrFOiUgy-hr4dNCX-DmzqNf4tGA-tZfb2WbFAa451SDY-3eBGPGoek3q8d176tf6g=s1328-w720-h1328-rw",
+    short: "Waterfall where holy water for rituals is drawn daily.",
+    long: "Akasha Ganga is an ancient sacred waterfall whose water is used in daily temple rituals."
   },
   {
-    title: "Sree Venu Gopala Swamy Temple, Tirumala",
-    img: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Venu_Gopala_Swamy_Temple_Tirumala.jpg",
-    short: "Ancient temple dedicated to Lord Krishna, located near Papavinasanam road.",
-    long: "The Sree Venu Gopala Swamy Temple is one of Tirumala’s hidden spiritual gems. Dedicated to Lord Krishna, this peaceful temple showcases beautiful architecture and carvings. Devotees often visit here after Papavinasanam to seek blessings of Lord Krishna in his flute-playing form, signifying divine love and peace."
+    title: "Venu Gopala Swamy Temple",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZHhZ_7A_o3ry0OkEvjgAiL8rtBFAjnsJLMrmJqQjWRhcXU4YQjN8wSvI&s",
+    short: "Ancient temple dedicated to Lord Krishna near Papavinasanam.",
+    long: "The Sree Venu Gopala Swamy Temple is one of Tirumala’s hidden gems dedicated to Lord Krishna."
   },
   {
-    title: "Japali, Tirumala",
-    img: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Japali_Anjaneya_Swami_Temple_Tirumala.jpg",
-    short: "Forest temple dedicated to Lord Hanuman, offering calm and divine vibrations.",
-    long: "Japali Theertham or Japali Hanuman Temple lies deep within the Tirumala forest. It is said that Lord Hanuman resided here during the Ramayana. A natural pond and dense greenery make it a favorite of spiritual seekers and nature lovers alike. Pilgrims trek through the woods to reach this divine and powerful site."
+    title: "Japali Theertham",
+    img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSz9sTA8deK5pRXqucjul2ncN4ZzM1kwMt3zMShcWCn0p3udbtIb1RchazsydgeVdy_HrTfLn-xgzXpYld-GcZyr9akevUiyIJgHwN19HJ3ZfNMMAWN5FWcJtHdHjs0SbOMhm0M=s520-w520-h416-n-k-no",
+    short: "Forest temple dedicated to Lord Hanuman.",
+    long: "Japali Hanuman Temple lies deep within the Tirumala forest, believed to be visited by Lord Hanuman."
   }
 ];
 
-const grid = document.getElementById('packagesGrid');
+const grid = document.getElementById("packagesGrid");
 packages.forEach((p, i) => {
-  const card = document.createElement('div');
-  card.className = 'card';
+  const card = document.createElement("div");
+  card.className = "card";
   card.innerHTML = `
     <img src="${p.img}" alt="${p.title}">
     <div class="body">
@@ -228,15 +228,15 @@ packages.forEach((p, i) => {
 
 function openModal(i){
   const p = packages[i];
-  document.getElementById('modalImg').src = p.img;
-  document.getElementById('modalTitle').textContent = p.title;
-  document.getElementById('modalText').textContent = p.long;
+  document.getElementById("modalImg").src = p.img;
+  document.getElementById("modalTitle").textContent = p.title;
+  document.getElementById("modalText").textContent = p.long;
   const msg = `Hi ${driverName}, I'm interested in visiting ${p.title}. Please share more details.`;
-  document.getElementById('bookBtn').href = 'https://wa.me/' + driverNumber + '?text=' + encodeURIComponent(msg);
-  document.getElementById('modal').style.display = 'block';
+  document.getElementById("bookBtn").href = "https://wa.me/" + driverNumber + "?text=" + encodeURIComponent(msg);
+  document.getElementById("modal").style.display = "block";
 }
-function hideModal(){ document.getElementById('modal').style.display='none'; }
-function closeModal(e){ if(e.target.id==='modal'){ hideModal(); } }
+function hideModal(){ document.getElementById("modal").style.display = "none"; }
+function closeModal(e){ if(e.target.id === "modal"){ hideModal(); } }
 </script>
 
 </body>
