@@ -16,35 +16,35 @@ body {
   background: #f4f6f8;
   color: #111;
 }
-
-/* ✅ Banner with background image */
 .hero {
   position: relative;
-  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThAlK2v-XnN6bvgiY4AGhg82oo0rIGT3BMWeCYIm-7jA&s=10') center/cover no-repeat;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/2/24/Tirumala_hills_view.jpg') center/cover no-repeat;
   color: white;
   text-align: center;
-  padding: 80px 16px;
+  padding: 100px 16px;
 }
 .hero::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.45);
 }
-.hero h1, .hero h2, .hero a {
+.hero-content {
   position: relative;
   z-index: 1;
 }
 .hero h1 {
   margin: 0;
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 30px;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
 }
 .hero h2 {
   margin: 8px 0 0;
   font-size: 18px;
-  color: #aad7ff;
+  color: #fff;
   font-weight: 600;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
 }
 .btn {
   background: var(--accent);
@@ -54,7 +54,6 @@ body {
   text-decoration: none;
   display: inline-block;
   font-weight: 700;
-  margin-top: 12px;
 }
 .container {
   max-width: 980px;
@@ -134,19 +133,18 @@ footer {
   flex-wrap: wrap;
   margin-top: 12px;
 }
-.small {
-  font-size: 13px;
-  color: #666;
-}
 </style>
 </head>
 <body>
 
-<!-- ✅ Banner Section -->
 <section class="hero">
-  <h1>Tirumala One Day Tour</h1>
-  <h2>by Raju Naik – Tirumala Taxi Driver 🚖</h2>
-  <a class="btn" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20know%20about%20your%20Tirumala%20tour.">📱 Chat on WhatsApp</a>
+  <div class="hero-content">
+    <h1>Tirumala One Day Tour</h1>
+    <h2>by Raju Naik – Tirumala Taxi Driver 🚕</h2>
+    <div style="margin-top:12px">
+      <a class="btn" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20book%20Tirumala%20One%20Day%20Tour.">📱 Chat on WhatsApp</a>
+    </div>
+  </div>
 </section>
 
 <div class="container">
@@ -176,37 +174,37 @@ const driverNumber = "919154095125";
 const packages = [
   {
     title: "Sree Vari Padalu, Tirumala",
-    img: "https://upload.wikimedia.org/wikipedia/commons/5/5b/Srivari_Padalu_Tirumala.jpg",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgNhA5eywPCrjipY8W9CmmiDQ0YD0jO_ENZUYmlQuB6_UK9hBTKP_m56M&s",
     short: "Sacred footprints of Lord Venkateswara atop Narayanagiri Hill.",
     long: "Sree Vari Padalu are believed to be the exact spot where Lord Venkateswara first set foot on Tirumala hills."
   },
   {
     title: "Sila Thoranam, Tirumala",
-    img: "https://upload.wikimedia.org/wikipedia/commons/8/83/Sila_Thoranam_Tirumala.jpg",
+    img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxJ7O8YmvoZYAGezAUYNgzxnb1JEs3gy-8NNPCQHhpwOEV5GIAGWsqnKcZYRD-2wboeIY86LrZI7vaiFdDFt743ej0zV9RuGbgAAVqM9YVJ6IWz2_sGjwqMVz6m-L0I5_tOm43UkA=s520-w520-h416-n-k-no",
     short: "Natural rock arch formation — one of India's rare wonders.",
     long: "Sila Thoranam is a naturally formed rock arch near Tirumala Temple, dating back millions of years."
   },
   {
     title: "Papavinasanam, Tirumala",
-    img: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Papavinasanam_Tirumala_Waterfalls.jpg",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjQKCOUX8qe4JhGLolCec5uaHPWOf_JMS1N89RE7c7U1K-mnyN0hyMvAI&s",
     short: "Sacred waterfall believed to wash away sins.",
     long: "Papavinasanam, meaning 'Destruction of Sins', is a holy waterfall a few km from Tirumala."
   },
   {
     title: "Akasha Ganga, Tirumala",
-    img: "https://upload.wikimedia.org/wikipedia/commons/6/66/Akasha_Ganga_Tirumala.jpg",
+    img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyDCOzxi4EmSOa4TULBuuPqN4LFEChwrZUWbSChkC109oelmQ4Kj1x0x5cinp0Gy51ybFJExcrFOiUgy-hr4dNCX-DmzqNf4tGA-tZfb2WbFAa451SDY-3eBGPGoek3q8d176tf6g=s1328-w720-h1328-rw",
     short: "Waterfall where holy water for rituals is drawn daily.",
-    long: "Akasha Ganga is an ancient sacred waterfall whose water is used in the daily temple rituals."
+    long: "Akasha Ganga is an ancient sacred waterfall whose water is used in daily temple rituals."
   },
   {
     title: "Venu Gopala Swamy Temple",
-    img: "https://upload.wikimedia.org/wikipedia/commons/7/7f/Venu_Gopala_Swamy_Temple_Tirumala.jpg",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZHhZ_7A_o3ry0OkEvjgAiL8rtBFAjnsJLMrmJqQjWRhcXU4YQjN8wSvI&s",
     short: "Ancient temple dedicated to Lord Krishna near Papavinasanam.",
     long: "The Sree Venu Gopala Swamy Temple is one of Tirumala’s hidden gems dedicated to Lord Krishna."
   },
   {
     title: "Japali Theertham",
-    img: "https://upload.wikimedia.org/wikipedia/commons/b/bb/Japali_Anjaneya_Swami_Temple_Tirumala.jpg",
+    img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSz9sTA8deK5pRXqucjul2ncN4ZzM1kwMt3zMShcWCn0p3udbtIb1RchazsydgeVdy_HrTfLn-xgzXpYld-GcZyr9akevUiyIJgHwN19HJ3ZfNMMAWN5FWcJtHdHjs0SbOMhm0M=s520-w520-h416-n-k-no",
     short: "Forest temple dedicated to Lord Hanuman.",
     long: "Japali Hanuman Temple lies deep within the Tirumala forest, believed to be visited by Lord Hanuman."
   }
