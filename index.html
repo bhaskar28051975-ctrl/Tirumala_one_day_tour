@@ -1,347 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tirumala One Day Tour – by Raju Naik</title>
-<style>
-:root {
-  --accent: #0077cc;
-  --dark: #083a61;
-  --card-bg: rgba(255,255,255,0.97);
-}
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f4f6f8;
-  color: #111;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tirumala One Day Tour – Raju Naik</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      color: #222;
+      line-height: 1.6;
+    }
 
-/* Banner Section */
-.hero {
-  position: relative;
-  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThAlK2v-XnN6bvgiY4AGhg82oo0rIGT3BMWeCYIm-7jA&s=10') no-repeat center center/cover;
-  color: white;
-  text-align: center;
-  padding: 80px 16px 100px;
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.45);
-}
-.hero h1, .hero h2, .hero p {
-  position: relative;
-  z-index: 2;
-}
-.hero h1 {
-  font-size: 28px;
-  margin: 0;
-  font-weight: 700;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
-}
-.hero h2 {
-  margin-top: 10px;
-  font-size: 18px;
-  color: #ffeaa7;
-  font-weight: 600;
-}
-.hero p.signature {
-  margin-top: 16px;
-  font-size: 15px;
-  color: #fff;
-  font-weight: 600;
-}
+    header {
+      background: url('images/banner.jpg') center/cover no-repeat;
+      padding: 60px 20px;
+      text-align: center;
+      color: #fff;
+      background-color: #083a61;
+    }
 
-/* WhatsApp floating button */
-.whatsapp-btn {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  background: #25D366;
-  color: #fff;
-  border-radius: 50%;
-  width: 58px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 999;
-  animation: float 2s ease-in-out infinite;
-}
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
+    header h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
 
-.container {
-  max-width: 980px;
-  margin: 20px auto;
-  padding: 0 12px;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px;
-}
-.card {
-  background: var(--card-bg);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-.card .body {
-  padding: 12px;
-}
-.card h3 {
-  margin: 6px 0;
-  font-size: 18px;
-  color: var(--dark);
-}
-.card p.desc {
-  font-size: 14px;
-  color: #333;
-}
+    header p {
+      font-size: 18px;
+    }
 
-footer {
-  margin: 30px 0;
-  text-align: center;
-  color: #555;
-  font-size: 14px;
-  font-weight: 600;
-}
-footer b {
-  color: var(--dark);
-}
+    /* Section Title */
+    h2 {
+      color: #083a61;
+      text-align: center;
+      margin-top: 20px;
+    }
 
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  z-index: 999;
-}
-.modal .box {
-  background: #fff;
-  max-width: 720px;
-  margin: 6% auto;
-  border-radius: 10px;
-  overflow: hidden;
-}
-.modal img {
-  width: 100%;
-  height: 260px;
-  object-fit: cover;
-}
-.modal .cont {
-  padding: 14px;
-  text-align: left;
-  color: #111;
-}
-.modal h3 {
-  margin: 0 0 8px;
-  color: var(--dark);
-}
-.modal p {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #333;
-}
-.modal .actions {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-}
-.btn {
-  background: var(--accent);
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 8px;
-  text-decoration: none;
-  display: inline-block;
-  font-weight: 700;
-  margin-top: 10px;
-  position: relative;
-  z-index: 2;
-}
-  /* Gallery Styles */
-#gallery {
-  text-align: center;
-  padding: 20px;
-}
+    /* Gallery Section */
+    #gallery {
+      text-align: center;
+      padding: 20px;
+    }
 
-.gallery-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
+    .gallery-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
 
-.gallery-container img {
-  width: 200px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
+    .gallery-container img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
 
-.gallery-container img:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
+    .gallery-container img:hover {
+      transform: scale(1.1);
+      cursor: pointer;
+    }
 
-</style>
+    /* Booking Buttons */
+    .button {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+      margin: 10px auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .whatsapp { background: #25D366; }
+    .formbtn { background: #0077cc; font-size: 16px; }
+
+    /* Booking Section */
+    #booking {
+      background: #fff;
+      padding: 25px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    /* Contact Section */
+    #contact {
+      background: #083a61;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #111;
+      color: #fff;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+  </style>
 </head>
 <body>
 
-<section class="hero">
+<header>
   <h1>Tirumala One Day Tour</h1>
-  <h3>Raju Naik   Tirumala Taxi Driver 🚕</h3>
-  <p class="signature">📞 +91 91540 95125</p>
-</section>
+  <p>By Trusted Driver – Raju Naik • 15+ Years Experience</p>
+</header>
 
-<a class="whatsapp-btn" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20know%20about%20your%20Tirumala%20one%20day%20tour%20packages." target="_blank">💬</a>
 <!-- Gallery Section -->
 <section id="gallery">
   <h2>Tour Gallery</h2>
   <div class="gallery-container">
-    <img src="temple1.jpg" alt="Temple 1">
-    <img src="temple2.jpg" alt="Temple 2">
-    <img src="temple3.jpg" alt="Temple 3">
-    <img src="temple4.jpg" alt="Temple 4">
+    <img src="images/temple1.jpg" alt="Temple 1">
+    <img src="images/temple2.jpg" alt="Temple 2">
+    <img src="images/temple3.jpg" alt="Temple 3">
+    <img src="images/temple4.jpg" alt="Temple 4">
   </div>
 </section>
+
 <!-- Booking Section -->
-<section id="booking" style="text-align:center; padding:25px; background:#fff; margin-top:20px;">
-  <h2 style="color:#083a61; margin-bottom:10px;">Book Your Tirumala One Day Tour</h2>
-  <p style="font-size:15px; color:#444; max-width:600px; margin:auto;">
-    For booking, timings, pickup details, and package price, contact directly on WhatsApp.
-  </p>
+<section id="booking">
+  <h2>Book Your Tirumala One Day Tour</h2>
+  <p>For booking, timings, pickup location, and package price, contact directly on WhatsApp or fill out the simple Google Form.</p>
 
-  <a href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20book%20your%20Tirumala%20One%20Day%20Tour." 
-     style="display:inline-block; margin-top:18px; background:#25D366; color:#fff; 
-     padding:12px 22px; border-radius:8px; font-size:18px; font-weight:bold; 
-     text-decoration:none; box-shadow:0 4px 12px rgba(0,0,0,0.15);">
-     📲 Book on WhatsApp
-  </a>
+  <a class="button whatsapp" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20book%20your%20Tirumala%20One%20Day%20Tour.">📲 Book on WhatsApp</a>
 
-  <p style="margin-top:15px; font-size:14px; color:#555;">
-    Quick Response • Trusted Driver • 15+ Years Experience
-  </p>
+  <br>
+
+  <a class="button formbtn" href="https://forms.gle/9oXvoKyEENqykLk66">📋 Fill Google Form</a>
+
+  <p style="margin-top:15px; font-size:14px; color:#555;">Quick Response • Trusted Driver • Safe Journey</p>
 </section>
 
-<div class="container">
-  <h2 style="color:var(--dark);text-align:center;">Popular Tirumala Sightseeing Spots</h2>
-  <div class="grid" id="packagesGrid"></div>
-  <!-- Booking Section -->
-<section id="booking" style="padding: 20px; background: #f8f8f8;">
-  <h2 style="text-align:center;">Online Tour Booking</h2>
-
-  <form action="#" method="post" style="max-width: 400px; margin: auto;">
-    
-    <label>Full Name:</label>
-    <input type="text" required style="width:100%; padding:8px; margin-bottom:10px;">
-
-    <label>Mobile Number:</label>
-    <input type="tel" required style="width:100%; padding:8px; margin-bottom:10px;">
-
-    <label>No. of Adults:</label>
-    <input type="number" min="1" value="1" required style="width:100%; padding:8px; margin-bottom:10px;">
-
-    <label>No. of Children:</label>
-    <input type="number" min="0" value="0" required style="width:100%; padding:8px; margin-bottom:10px;">
-
-    <label>Preferred Date:</label>
-    <input type="date" required style="width:100%; padding:8px; margin-bottom:10px;">
-
-    <button style="width:100%; padding:10px; background:#0073e6; color:white; border:none; border-radius:5px;">
-      Submit Booking
-    </button>
-
-  </form>
+<!-- Contact Section -->
+<section id="contact">
+  <h2>Contact Details</h2>
+  <p>📞 Call / WhatsApp: <strong>91540 95125</strong></p>
+  <p>📍 Tirupati, Andhra Pradesh</p>
 </section>
 
-  <footer>© 2025 | Powered by <b>BR Info Tech Pvt Ltd</b></footer>
-</div>
-
-<!-- Modal -->
-<div id="modal" class="modal" onclick="closeModal(event)">
-  <div class="box" onclick="event.stopPropagation()">
-    <img id="modalImg" src="" alt="">
-    <div class="cont">
-      <h3 id="modalTitle"></h3>
-      <p id="modalText"></p>
-      <div class="actions">
-        <a id="bookBtn" class="btn" href="#">📲 Book on WhatsApp</a>
-        <a class="btn" href="#" onclick="hideModal()">Close</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-const driverName = "Raju Naik";
-const driverNumber = "919154095125";
-
-const packages = [
-  { title: "Sree Vari Padalu, Tirumala", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgNhA5eywPCrjipY8W9CmmiDQ0YD0jO_ENZUYmlQuB6_UK9hBTKP_m56M&s", short: "Sacred footprints of Lord Venkateswara atop Narayanagiri Hill.", long: "Sree Vari Padalu are believed to be the spot where Lord Venkateswara first set foot on Tirumala hills." },
-  { title: "Sila Thoranam, Tirumala", img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxJ7O8YmvoZYAGezAUYNgzxnb1JEs3gy-8NNPCQHhpwOEV5GIAGWsqnKcZYRD-2wboeIY86LrZI7vaiFdDFt743ej0zV9RuGbgAAVqM9YVJ6IWz2_sGjwqMVz6m-L0I5_tOm43UkA=s520-w520-h416-n-k-no", short: "Natural rock arch formation — one of India's rare wonders.", long: "Sila Thoranam is a naturally formed rock arch near Tirumala Temple, dating back millions of years." },
-  { title: "Papavinasanam, Tirumala", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjQKCOUX8qe4JhGLolCec5uaHPWOf_JMS1N89RE7c7U1K-mnyN0hyMvAI&s", short: "Sacred waterfall believed to wash away sins.", long: "Papavinasanam, meaning 'Destruction of Sins', is a holy waterfall a few km from Tirumala." },
-  { title: "Akasha Ganga, Tirumala", img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyDCOzxi4EmSOa4TULBuuPqN4LFEChwrZUWbSChkC109oelmQ4Kj1x0x5cinp0Gy51ybFJExcrFOiUgy-hr4dNCX-DmzqNf4tGA-tZfb2WbFAa451SDY-3eBGPGoek3q8d176tf6g=s1328-w720-h1328-rw", short: "Waterfall where holy water for rituals is drawn daily.", long: "Akasha Ganga is a sacred waterfall whose water is used in the daily rituals at Tirumala Temple." },
-  { title: "Venu Gopala Swamy Temple", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZHhZ_7A_o3ry0OkEvjgAiL8rtBFAjnsJLMrmJqQjWRhcXU4YQjN8wSvI&s", short: "Ancient temple dedicated to Lord Krishna near Papavinasanam.", long: "The Sree Venu Gopala Swamy Temple is one of Tirumala’s hidden gems dedicated to Lord Krishna." },
-  { title: "Japali Theertham", img: "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSz9sTA8deK5pRXqucjul2ncN4ZzM1kwMt3zMShcWCn0p3udbtIb1RchazsydgeVdy_HrTfLn-xgzXpYld-GcZyr9akevUiyIJgHwN19HJ3ZfNMMAWN5FWcJtHdHjs0SbOMhm0M=s520-w520-h416-n-k-no", short: "Forest temple dedicated to Lord Hanuman.", long: "Japali Hanuman Temple lies deep within the Tirumala forest, believed to have been visited by Lord Hanuman." }
-];
-
-const grid = document.getElementById("packagesGrid");
-packages.forEach((p, i) => {
-  const card = document.createElement("div");
-  card.className = "card";
-  card.innerHTML = `
-    <img src="${p.img}" alt="${p.title}">
-    <div class="body">
-      <h3>${p.title}</h3>
-      <p class="desc">${p.short}</p>
-      <div style="margin-top:8px;">
-        <a href="#" class="btn" onclick="openModal(${i})">Check Details</a>
-      </div>
-    </div>`;
-  grid.appendChild(card);
-});
-
-function openModal(i){
-  const p = packages[i];
-  document.getElementById("modalImg").src = p.img;
-  document.getElementById("modalTitle").textContent = p.title;
-  document.getElementById("modalText").textContent = p.long;
-  const msg = `Hi ${driverName}, I'm interested in visiting ${p.title}. Please share more details.`;
-  document.getElementById("bookBtn").href = "https://wa.me/" + driverNumber + "?text=" + encodeURIComponent(msg);
-  document.getElementById("modal").style.display = "block";
-}
-function hideModal(){ document.getElementById("modal").style.display = "none"; }
-function closeModal(e){ if(e.target.id === "modal"){ hideModal(); } }
-</script>
+<footer>
+  Powered by BR • © 2025 Tirumala One Day Tour
+</footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
