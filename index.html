@@ -246,6 +246,34 @@ footer b {
 <div class="container">
   <h2 style="color:var(--dark);text-align:center;">Popular Tirumala Sightseeing Spots</h2>
   <div class="grid" id="packagesGrid"></div>
+  <!-- Booking Section -->
+<section id="booking" style="padding: 20px; background: #f8f8f8;">
+  <h2 style="text-align:center;">Online Tour Booking</h2>
+
+  <form action="#" method="post" style="max-width: 400px; margin: auto;">
+    
+    <label>Full Name:</label>
+    <input type="text" required style="width:100%; padding:8px; margin-bottom:10px;">
+
+    <label>Mobile Number:</label>
+    <input type="tel" required style="width:100%; padding:8px; margin-bottom:10px;">
+
+    <label>No. of Adults:</label>
+    <input type="number" min="1" value="1" required style="width:100%; padding:8px; margin-bottom:10px;">
+
+    <label>No. of Children:</label>
+    <input type="number" min="0" value="0" required style="width:100%; padding:8px; margin-bottom:10px;">
+
+    <label>Preferred Date:</label>
+    <input type="date" required style="width:100%; padding:8px; margin-bottom:10px;">
+
+    <button style="width:100%; padding:10px; background:#0073e6; color:white; border:none; border-radius:5px;">
+      Submit Booking
+    </button>
+
+  </form>
+</section>
+
   <footer>© 2025 | Powered by <b>BR Info Tech Pvt Ltd</b></footer>
 </div>
 
@@ -308,6 +336,7 @@ function closeModal(e){ if(e.target.id === "modal"){ hideModal(); } }
 
 </body>
 </html>
+
 
 
 
