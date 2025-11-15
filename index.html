@@ -19,7 +19,7 @@ body {
   color: #111;
 }
 
-/* Banner Section */
+/* Banner */
 .hero {
   position: relative;
   background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThAlK2v-XnN6bvgiY4AGhg82oo0rIGT3BMWeCYIm-7jA&s=10') no-repeat center center/cover;
@@ -30,19 +30,15 @@ body {
 .hero::after {
   content: "";
   position: absolute;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.45);
 }
-.hero h1, .hero h3, .hero p {
-  position: relative;
-  z-index: 2;
-}
+.hero * { position: relative; z-index: 2; }
+
 .hero h1 {
   font-size: 28px;
   margin: 0;
   font-weight: 700;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
 }
 .hero h3 {
   margin-top: 10px;
@@ -55,6 +51,26 @@ body {
   font-size: 15px;
   color: #fff;
   font-weight: 600;
+}
+
+/* Language buttons */
+.lang-bar {
+  text-align: center;
+  margin-top: -60px;
+}
+.lang-bar button {
+  background: white;
+  color: #083a61;
+  border: 1px solid #083a61;
+  padding: 6px 12px;
+  margin: 3px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.lang-bar button:hover {
+  background: #083a61;
+  color: white;
 }
 
 /* WhatsApp float */
@@ -72,126 +88,37 @@ body {
   justify-content: center;
   font-size: 28px;
   text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   z-index: 999;
-  animation: float 2s ease-in-out infinite;
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
 }
 
-/* Container */
-.container {
-  max-width: 980px;
-  margin: 20px auto;
-  padding: 0 12px;
+/* Gallery */
+#gallery { text-align: center; padding: 20px; }
+.gallery-container {
+  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+}
+.gallery-container img {
+  width: 200px; height: 150px; object-fit: cover;
+  border-radius: 8px; cursor:pointer;
 }
 
+/* Cards */
+.container { max-width: 980px; margin: 20px auto; padding: 0 12px; }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
   gap: 16px;
 }
 .card {
   background: var(--card-bg);
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-.card .body {
-  padding: 12px;
-}
-.card h3 {
-  margin: 6px 0;
-  font-size: 18px;
-  color: var(--dark);
-}
-.card p.desc {
-  font-size: 14px;
-  color: #333;
-}
-
-/* Gallery Styles */
-#gallery {
-  text-align: center;
-  padding: 20px;
-}
-.gallery-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-.gallery-container img {
-  width: 200px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
-.gallery-container img:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  left:0; top:0;
-  width:100%; height:100%;
-  background: rgba(0,0,0,0.6);
-  z-index: 999;
-}
-.modal .box {
-  background:#fff;
-  max-width:720px;
-  margin:6% auto;
-  border-radius:10px;
   overflow:hidden;
 }
-.modal img {
-  width:100%;
-  height:260px;
-  object-fit:cover;
-}
-.modal .cont {
-  padding:14px;
-  text-align:left;
-  color:#111;
-}
-.modal h3 {
-  margin:0 0 8px;
-  color:var(--dark);
-}
-.modal p {
-  font-size:14px;
-  line-height:1.5;
-  color:#333;
-}
-.modal .actions {
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:12px;
-}
-.btn {
-  background:var(--accent);
-  color:#fff;
-  padding:10px 14px;
-  border-radius:8px;
-  text-decoration:none;
-  display:inline-block;
-  font-weight:700;
-  margin-top:10px;
-}
+.card img { width: 100%; height: 180px; object-fit: cover; }
+.card .body { padding: 12px; }
+.card h3 { color: var(--dark); margin:6px 0; }
 
+/* Footer */
 footer {
   text-align:center;
   margin:30px 0;
@@ -199,87 +126,169 @@ footer {
   font-weight:600;
 }
 footer b { color:var(--dark); }
-
 </style>
 </head>
 <body>
 
 <!-- HERO -->
 <section class="hero">
-  <h1>Tirumala One Day Tour</h1>
-  <h3>Raju Naik – Tirumala Taxi Driver 🚕</h3>
-  <p class="signature">📞 +91 91540 95125</p>
+  <h1 data-key="title_main">Tirumala One Day Tour</h1>
+  <h3 data-key="driver_title">Raju Naik – Tirumala Taxi Driver 🚕</h3>
+  <p class="signature" data-key="phone">📞 +91 91540 95125</p>
 </section>
 
+<!-- Language Buttons -->
+<div class="lang-bar">
+  <button onclick="setLang('en')">EN</button>
+  <button onclick="setLang('te')">తెలుగు</button>
+  <button onclick="setLang('ta')">தமிழ்</button>
+  <button onclick="setLang('kn')">ಕನ್ನಡ</button>
+  <button onclick="setLang('mr')">मराठी</button>
+  <button onclick="setLang('hi')">हिंदी</button>
+</div>
+
+<!-- WhatsApp button -->
 <a class="whatsapp-btn"
-href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20know%20about%20your%20Tirumala%20one%20day%20tour%20packages."
+href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20know%20about%20your%20Tirumala%20tour."
 target="_blank">💬</a>
 
-<!-- GALLERY -->
+<!-- Gallery -->
 <section id="gallery">
-  <h2>Tour Gallery</h2>
+  <h2 data-key="gallery_title">Tour Gallery</h2>
   <div class="gallery-container">
-    <img src="temple1.jpg" alt="Temple 1">
-    <img src="temple2.jpg" alt="Temple 2">
-    <img src="temple3.jpg" alt="Temple 3">
-    <img src="temple4.jpg" alt="Temple 4">
+    <img src="temple1.jpg">
+    <img src="temple2.jpg">
+    <img src="temple3.jpg">
+    <img src="temple4.jpg">
   </div>
 </section>
 
-<!-- BOOKING SECTION -->
-<section id="booking" style="text-align:center; padding:25px; background:#fff; margin-top:20px;">
-  <h2 style="color:#083a61;">Book Your Tirumala One Day Tour</h2>
-  <p style="max-width:600px; margin:auto; color:#444;">
+<!-- Booking Section -->
+<section id="booking" style="text-align:center; padding:25px; background:#fff;">
+  <h2 data-key="booking_title" style="color:#083a61;">Book Your Tirumala One Day Tour</h2>
+  <p data-key="booking_text" style="max-width:600px; margin:auto; color:#444;">
     For booking, timings, pickup and price details, contact on WhatsApp or fill Google Form.
   </p>
 
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20book%20your%20Tirumala%20One%20Day%20Tour."
+  <a id="waBtn" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik"
      style="display:inline-block; margin-top:18px; background:#25D366; color:#fff;
-     padding:12px 22px; border-radius:8px; font-size:18px;
-     font-weight:bold; text-decoration:none;">
-     📲 Book on WhatsApp
+     padding:12px 22px; border-radius:8px; font-size:18px; font-weight:bold;">
+     📲 <span data-key="book_whatsapp">Book on WhatsApp</span>
   </a>
 
-  <!-- Google Form Button -->
   <br><br>
-  <a href="https://forms.gle/9oXvoKyEENqykLk66"
+
+  <a href="https://forms.gle/2uNiighXYL3Gy1zq9"
      style="display:inline-block; background:#0077cc; color:#fff;
-     padding:10px 22px; border-radius:8px; font-size:18px;
-     font-weight:bold; text-decoration:none;">
-     📋 Fill Google Form
+     padding:10px 22px; border-radius:8px; font-size:18px; font-weight:bold;">
+     📋 <span data-key="google_form">Fill Google Form</span>
   </a>
 
-  <p style="margin-top:15px; color:#555;">
+  <p data-key="experience" style="margin-top:15px; color:#555;">
     Quick Response • Trusted Driver • 15+ Years Experience
   </p>
 </section>
 
-<!-- PACKAGES -->
+<!-- Packages -->
 <div class="container">
-  <h2 style="text-align:center; color:var(--dark);">Popular Tirumala Sightseeing Spots</h2>
+  <h2 style="text-align:center; color:var(--dark);" data-key="spot_title">
+    Popular Tirumala Sightseeing Spots
+  </h2>
+
   <div class="grid" id="packagesGrid"></div>
 
   <footer>© 2025 | Powered by <b>BR Info Tech Pvt Ltd</b></footer>
 </div>
 
-<!-- MODAL -->
-<div id="modal" class="modal" onclick="closeModal(event)">
-  <div class="box" onclick="event.stopPropagation()">
-    <img id="modalImg">
-    <div class="cont">
-      <h3 id="modalTitle"></h3>
-      <p id="modalText"></p>
+<script>
+/* --------------------------
+   TRANSLATION DATA
+--------------------------- */
+const translations = {
+  en: {
+    title_main: "Tirumala One Day Tour",
+    driver_title: "Raju Naik – Tirumala Taxi Driver 🚕",
+    phone: "📞 +91 91540 95125",
+    gallery_title: "Tour Gallery",
+    booking_title: "Book Your Tirumala One Day Tour",
+    booking_text: "For booking, timings, pickup and price details, contact on WhatsApp or fill Google Form.",
+    book_whatsapp: "Book on WhatsApp",
+    google_form: "Fill Google Form",
+    experience: "Quick Response • Trusted Driver • 15+ Years Experience",
+    spot_title: "Popular Tirumala Sightseeing Spots"
+  },
+  te: {
+    title_main:"తిరుమల వన్ డే టూర్",
+    driver_title:"రాజు నాయక్ – తిరుమల టాక్సీ డ్రైవర్ 🚕",
+    phone:"📞 +91 91540 95125",
+    gallery_title:"టూర్ ఫోటోలు",
+    booking_title:"మీ తిరుమల వన్ డే టూర్ బుక్ చేసుకోండి",
+    booking_text:"బుకింగ్, టైమింగ్స్, పికప్, ధర వివరాల కోసం WhatsApp చేయండి లేదా Google Form నింపండి.",
+    book_whatsapp:"WhatsApp ద్వారా బుక్ చేయండి",
+    google_form:"Google Form నింపండి",
+    experience:"త్వరిత స్పందన • నమ్మకమైన డ్రైవర్ • 15+ ఏళ్ల అనుభవం",
+    spot_title:"ప్రముఖ తిరుమల దర్శనీయ స్థలాలు"
+  },
+  ta: {
+    title_main:"திருமலை ஒன் டே டூர்",
+    driver_title:"ராஜு நாயக் – திருமலை டாக்சி டிரைவர் 🚕",
+    phone:"📞 +91 91540 95125",
+    gallery_title:"டூர் கேலரி",
+    booking_title:"உங்கள் திருமலை ஒன் டே டூர் புக் செய்யுங்கள்",
+    booking_text:"புக்கிங், நேரம், பிக்கப், விலை விவரங்களுக்கு WhatsApp செய்யலாம் அல்லது Google Form நிரப்பலாம்.",
+    book_whatsapp:"WhatsApp மூலம் புக் செய்யவும்",
+    google_form:"Google Form நிரப்பவும்",
+    experience:"விரைவு பதில் • நம்பகமான டிரைவர் • 15+ ஆண்டு அனுபவம்",
+    spot_title:"பிரபல திருமலை சுற்றுலா இடங்கள்"
+  },
+  kn: {
+    title_main:"ತಿರುಮಲ ಒನ್ ಡೇ ಟೂರ್",
+    driver_title:"ರಾಜು ನಾಯಕ – ತಿರುಮಲ ಟೆಕ್ಸಿ ಚಾಲಕ 🚕",
+    phone:"📞 +91 91540 95125",
+    gallery_title:"ಟೂರ್ ಗ್ಯಾಲರಿ",
+    booking_title:"ನಿಮ್ಮ ತಿರುಮಲ ಒನ್ ಡೇ ಟೂರ್ ಬುಕ್ ಮಾಡಿ",
+    booking_text:"ಬುಕ್ಕಿಂಗ್, ಸಮಯ, ಪಿಕಪ್, ದರ ವಿವರಗಳಿಗೆ WhatsApp ಮಾಡಿ ಅಥವಾ Google Form ತುಂಬಿ.",
+    book_whatsapp:"WhatsApp ಮೂಲಕ ಬುಕ್ ಮಾಡಿ",
+    google_form:"Google Form ತುಂಬಿ",
+    experience:"ತ್ವರಿತ ಪ್ರತಿಕ್ರಿಯೆ • ವಿಶ್ವಾಸಾರ್ಹ ಚಾಲಕ • 15+ ವರ್ಷ ಅನುಭವ",
+    spot_title:"ಜನಪ್ರಿಯ ತಿರುಮಲ ಸಂದರ್ಶನ ಸ್ಥಳಗಳು"
+  },
+  mr: {
+    title_main:"तिरुमला वन डे टूर",
+    driver_title:"राजू नाईक – तिरुमला टॅक्सी ड्रायव्हर 🚕",
+    phone:"📞 +91 91540 95125",
+    gallery_title:"टूर गॅलरी",
+    booking_title:"तुमचा तिरुमला वन डे टूर बुक करा",
+    booking_text:"बुकिंग, वेळ, पिकअप आणि किंमत माहितीसाठी WhatsApp करा किंवा Google Form भरा.",
+    book_whatsapp:"WhatsApp वरून बुक करा",
+    google_form:"Google Form भरा",
+    experience:"त्वरित प्रतिसाद • विश्वसनीय ड्रायव्हर • 15+ वर्षांचा अनुभव",
+    spot_title:"लोकप्रिय तिरुमला पर्यटन स्थळे"
+  },
+  hi: {
+    title_main:"तिरुमला वन डे टूर",
+    driver_title:"राजू नायक – तिरुमला टैक्सी ड्राइवर 🚕",
+    phone:"📞 +91 91540 95125",
+    gallery_title:"टूर गैलरी",
+    booking_title:"अपना तिरुमला वन डे टूर बुक करें",
+    booking_text:"बुकिंग, समय, पिकअप और कीमत के लिए WhatsApp करें या Google Form भरें।",
+    book_whatsapp:"WhatsApp से बुक करें",
+    google_form:"Google Form भरें",
+    experience:"त्वरित सेवा • भरोसेमंद ड्राइवर • 15+ साल अनुभव",
+    spot_title:"लोकप्रिय तिरुमला दर्शनीय स्थल"
+  }
+};
 
-      <div class="actions">
-        <a id="bookBtn" class="btn" href="#">📲 Book on WhatsApp</a>
-        <a class="btn" onclick="hideModal()">Close</a>
-      </div>
-    </div>
-  </div>
-</div>
+/* APPLY LANGUAGE */
+function setLang(lang){
+  document.querySelectorAll("[data-key]").forEach(el=>{
+    el.textContent = translations[lang][el.dataset.key];
+  });
+}
+</script>
 
 <script>
+/* PACKAGES (same as your previous data) */
 const driverName = "Raju Naik";
 const driverNumber = "919154095125";
 
@@ -295,29 +304,15 @@ const packages = [
 const grid = document.getElementById("packagesGrid");
 
 packages.forEach((p,i)=>{
-  const card = document.createElement("div");
-  card.className="card";
-  card.innerHTML = `
-    <img src="${p.img}">
-    <div class="body">
-      <h3>${p.title}</h3>
-      <p class="desc">${p.short}</p>
-      <a href="#" class="btn" onclick="openModal(${i})">Check Details</a>
+  grid.innerHTML += `
+    <div class="card">
+      <img src="${p.img}">
+      <div class="body">
+        <h3>${p.title}</h3>
+        <p>${p.short}</p>
+      </div>
     </div>`;
-  grid.appendChild(card);
 });
-
-function openModal(i){
-  const p = packages[i];
-  document.getElementById("modalImg").src = p.img;
-  document.getElementById("modalTitle").textContent = p.title;
-  document.getElementById("modalText").textContent = p.long;
-  const msg = `Hi ${driverName}, I want details of ${p.title}.`;
-  document.getElementById("bookBtn").href = "https://wa.me/" + driverNumber + "?text=" + encodeURIComponent(msg);
-  document.getElementById("modal").style.display="block";
-}
-function hideModal(){ document.getElementById("modal").style.display="none"; }
-function closeModal(e){ if(e.target.id==="modal"){ hideModal(); } }
 </script>
 
 </body>
