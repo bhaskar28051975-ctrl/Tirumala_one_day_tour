@@ -1,318 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tirumala One Day Tour – by Raju Naik</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tirumala One Day Tour – Multilingual</title>
 
 <style>
-:root {
-  --accent: #0077cc;
-  --dark: #083a61;
-  --card-bg: rgba(255,255,255,0.97);
-}
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f5;
+    }
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f4f6f8;
-  color: #111;
-}
+    header {
+        background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThAlK2v-XnN6bvgiY4AGhg82oo0rIGT3BMWeCYIm-7jA&s=10') no-repeat center/cover;
+        height: 180px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        font-weight: bold;
+        text-shadow: 0px 0px 5px black;
+        text-align: center;
+        padding: 10px;
+    }
 
-/* Banner */
-.hero {
-  position: relative;
-  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThAlK2v-XnN6bvgiY4AGhg82oo0rIGT3BMWeCYIm-7jA&s=10') no-repeat center center/cover;
-  color: white;
-  text-align: center;
-  padding: 80px 16px 100px;
-}
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-}
-.hero * { position: relative; z-index: 2; }
+    .container {
+        padding: 15px;
+    }
 
-.hero h1 {
-  font-size: 28px;
-  margin: 0;
-  font-weight: 700;
-}
-.hero h3 {
-  margin-top: 10px;
-  font-size: 18px;
-  color: #ffeaa7;
-  font-weight: 600;
-}
-.hero p.signature {
-  margin-top: 16px;
-  font-size: 15px;
-  color: #fff;
-  font-weight: 600;
-}
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        font-size: 16px;
+    }
 
-/* Language buttons */
-.lang-bar {
-  text-align: center;
-  margin-top: -60px;
-}
-.lang-bar button {
-  background: white;
-  color: #083a61;
-  border: 1px solid #083a61;
-  padding: 6px 12px;
-  margin: 3px;
-  border-radius: 6px;
-  font-weight: 600;
-  cursor: pointer;
-}
-.lang-bar button:hover {
-  background: #083a61;
-  color: white;
-}
+    .card {
+        background: white;
+        padding: 12px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0 0 5px rgba(0,0,0,0.15);
+    }
 
-/* WhatsApp float */
-.whatsapp-btn {
-  position: fixed;
-  bottom: 15px;
-  right: 15px;
-  background: #25D366;
-  color: #fff;
-  border-radius: 50%;
-  width: 58px;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  text-decoration: none;
-  z-index: 999;
-}
-
-/* Gallery */
-#gallery { text-align: center; padding: 20px; }
-.gallery-container {
-  display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
-}
-.gallery-container img {
-  width: 200px; height: 150px; object-fit: cover;
-  border-radius: 8px; cursor:pointer;
-}
-
-/* Cards */
-.container { max-width: 980px; margin: 20px auto; padding: 0 12px; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap: 16px;
-}
-.card {
-  background: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  overflow:hidden;
-}
-.card img { width: 100%; height: 180px; object-fit: cover; }
-.card .body { padding: 12px; }
-.card h3 { color: var(--dark); margin:6px 0; }
-
-/* Footer */
-footer {
-  text-align:center;
-  margin:30px 0;
-  color:#444;
-  font-weight:600;
-}
-footer b { color:var(--dark); }
+    footer {
+        text-align: center;
+        padding: 15px;
+        font-size: 14px;
+        color: #555;
+    }
 </style>
 </head>
 <body>
 
-<!-- HERO -->
-<section class="hero">
-  <h1 data-key="title_main">Tirumala One Day Tour</h1>
-  <h3 data-key="driver_title">Raju Naik – Tirumala Taxi Driver 🚕</h3>
-  <p class="signature" data-key="phone">📞 +91 91540 95125</p>
-</section>
+<header id="title"></header>
 
-<!-- Language Buttons -->
-<div class="lang-bar">
-  <button onclick="setLang('en')">EN</button>
-  <button onclick="setLang('te')">తెలుగు</button>
-  <button onclick="setLang('ta')">தமிழ்</button>
-  <button onclick="setLang('kn')">ಕನ್ನಡ</button>
-  <button onclick="setLang('mr')">मराठी</button>
-  <button onclick="setLang('hi')">हिंदी</button>
-</div>
-
-<!-- WhatsApp button -->
-<a class="whatsapp-btn"
-href="https://wa.me/919154095125?text=Hi%20Raju%20Naik%2C%20I%20want%20to%20know%20about%20your%20Tirumala%20tour."
-target="_blank">💬</a>
-
-<!-- Gallery -->
-<section id="gallery">
-  <h2 data-key="gallery_title">Tour Gallery</h2>
-  <div class="gallery-container">
-    <img src="temple1.jpg">
-    <img src="temple2.jpg">
-    <img src="temple3.jpg">
-    <img src="temple4.jpg">
-  </div>
-</section>
-
-<!-- Booking Section -->
-<section id="booking" style="text-align:center; padding:25px; background:#fff;">
-  <h2 data-key="booking_title" style="color:#083a61;">Book Your Tirumala One Day Tour</h2>
-  <p data-key="booking_text" style="max-width:600px; margin:auto; color:#444;">
-    For booking, timings, pickup and price details, contact on WhatsApp or fill Google Form.
-  </p>
-
-  <a id="waBtn" href="https://wa.me/919154095125?text=Hi%20Raju%20Naik"
-     style="display:inline-block; margin-top:18px; background:#25D366; color:#fff;
-     padding:12px 22px; border-radius:8px; font-size:18px; font-weight:bold;">
-     📲 <span data-key="book_whatsapp">Book on WhatsApp</span>
-  </a>
-
-  <br><br>
-
-  <a href="https://forms.gle/2uNiighXYL3Gy1zq9"
-     style="display:inline-block; background:#0077cc; color:#fff;
-     padding:10px 22px; border-radius:8px; font-size:18px; font-weight:bold;">
-     📋 <span data-key="google_form">Fill Google Form</span>
-  </a>
-
-  <p data-key="experience" style="margin-top:15px; color:#555;">
-    Quick Response • Trusted Driver • 15+ Years Experience
-  </p>
-</section>
-
-<!-- Packages -->
 <div class="container">
-  <h2 style="text-align:center; color:var(--dark);" data-key="spot_title">
-    Popular Tirumala Sightseeing Spots
-  </h2>
 
-  <div class="grid" id="packagesGrid"></div>
+    <select id="lang" onchange="changeLang()">
+        <option value="en">English</option>
+        <option value="te">తెలుగు</option>
+        <option value="ta">தமிழ்</option>
+        <option value="kn">ಕನ್ನಡ</option>
+        <option value="mr">मराठी</option>
+        <option value="hi">हिंदी</option>
+    </select>
 
-  <footer>© 2025 | Powered by <b>BR Info Tech Pvt Ltd</b></footer>
+    <div class="card"><h3 id="papa"></h3></div>
+    <div class="card"><h3 id="aakash"></h3></div>
+    <div class="card"><h3 id="venu"></h3></div>
+    <div class="card"><h3 id="japali"></h3></div>
+    <div class="card"><h3 id="sila"></h3></div>
+    <div class="card"><h3 id="padalu"></h3></div>
 </div>
+
+<footer>
+    Powered by BR Info Tech Pvt Ltd
+</footer>
 
 <script>
-/* --------------------------
-   TRANSLATION DATA
---------------------------- */
-const translations = {
-  en: {
-    title_main: "Tirumala One Day Tour",
-    driver_title: "Raju Naik – Tirumala Taxi Driver 🚕",
-    phone: "📞 +91 91540 95125",
-    gallery_title: "Tour Gallery",
-    booking_title: "Book Your Tirumala One Day Tour",
-    booking_text: "For booking, timings, pickup and price details, contact on WhatsApp or fill Google Form.",
-    book_whatsapp: "Book on WhatsApp",
-    google_form: "Fill Google Form",
-    experience: "Quick Response • Trusted Driver • 15+ Years Experience",
-    spot_title: "Popular Tirumala Sightseeing Spots"
-  },
-  te: {
-    title_main:"తిరుమల వన్ డే టూర్",
-    driver_title:"రాజు నాయక్ – తిరుమల టాక్సీ డ్రైవర్ 🚕",
-    phone:"📞 +91 91540 95125",
-    gallery_title:"టూర్ ఫోటోలు",
-    booking_title:"మీ తిరుమల వన్ డే టూర్ బుక్ చేసుకోండి",
-    booking_text:"బుకింగ్, టైమింగ్స్, పికప్, ధర వివరాల కోసం WhatsApp చేయండి లేదా Google Form నింపండి.",
-    book_whatsapp:"WhatsApp ద్వారా బుక్ చేయండి",
-    google_form:"Google Form నింపండి",
-    experience:"త్వరిత స్పందన • నమ్మకమైన డ్రైవర్ • 15+ ఏళ్ల అనుభవం",
-    spot_title:"ప్రముఖ తిరుమల దర్శనీయ స్థలాలు"
-  },
-  ta: {
-    title_main:"திருமலை ஒன் டே டூர்",
-    driver_title:"ராஜு நாயக் – திருமலை டாக்சி டிரைவர் 🚕",
-    phone:"📞 +91 91540 95125",
-    gallery_title:"டூர் கேலரி",
-    booking_title:"உங்கள் திருமலை ஒன் டே டூர் புக் செய்யுங்கள்",
-    booking_text:"புக்கிங், நேரம், பிக்கப், விலை விவரங்களுக்கு WhatsApp செய்யலாம் அல்லது Google Form நிரப்பலாம்.",
-    book_whatsapp:"WhatsApp மூலம் புக் செய்யவும்",
-    google_form:"Google Form நிரப்பவும்",
-    experience:"விரைவு பதில் • நம்பகமான டிரைவர் • 15+ ஆண்டு அனுபவம்",
-    spot_title:"பிரபல திருமலை சுற்றுலா இடங்கள்"
-  },
-  kn: {
-    title_main:"ತಿರುಮಲ ಒನ್ ಡೇ ಟೂರ್",
-    driver_title:"ರಾಜು ನಾಯಕ – ತಿರುಮಲ ಟೆಕ್ಸಿ ಚಾಲಕ 🚕",
-    phone:"📞 +91 91540 95125",
-    gallery_title:"ಟೂರ್ ಗ್ಯಾಲರಿ",
-    booking_title:"ನಿಮ್ಮ ತಿರುಮಲ ಒನ್ ಡೇ ಟೂರ್ ಬುಕ್ ಮಾಡಿ",
-    booking_text:"ಬುಕ್ಕಿಂಗ್, ಸಮಯ, ಪಿಕಪ್, ದರ ವಿವರಗಳಿಗೆ WhatsApp ಮಾಡಿ ಅಥವಾ Google Form ತುಂಬಿ.",
-    book_whatsapp:"WhatsApp ಮೂಲಕ ಬುಕ್ ಮಾಡಿ",
-    google_form:"Google Form ತುಂಬಿ",
-    experience:"ತ್ವರಿತ ಪ್ರತಿಕ್ರಿಯೆ • ವಿಶ್ವಾಸಾರ್ಹ ಚಾಲಕ • 15+ ವರ್ಷ ಅನುಭವ",
-    spot_title:"ಜನಪ್ರಿಯ ತಿರುಮಲ ಸಂದರ್ಶನ ಸ್ಥಳಗಳು"
-  },
-  mr: {
-    title_main:"तिरुमला वन डे टूर",
-    driver_title:"राजू नाईक – तिरुमला टॅक्सी ड्रायव्हर 🚕",
-    phone:"📞 +91 91540 95125",
-    gallery_title:"टूर गॅलरी",
-    booking_title:"तुमचा तिरुमला वन डे टूर बुक करा",
-    booking_text:"बुकिंग, वेळ, पिकअप आणि किंमत माहितीसाठी WhatsApp करा किंवा Google Form भरा.",
-    book_whatsapp:"WhatsApp वरून बुक करा",
-    google_form:"Google Form भरा",
-    experience:"त्वरित प्रतिसाद • विश्वसनीय ड्रायव्हर • 15+ वर्षांचा अनुभव",
-    spot_title:"लोकप्रिय तिरुमला पर्यटन स्थळे"
-  },
-  hi: {
-    title_main:"तिरुमला वन डे टूर",
-    driver_title:"राजू नायक – तिरुमला टैक्सी ड्राइवर 🚕",
-    phone:"📞 +91 91540 95125",
-    gallery_title:"टूर गैलरी",
-    booking_title:"अपना तिरुमला वन डे टूर बुक करें",
-    booking_text:"बुकिंग, समय, पिकअप और कीमत के लिए WhatsApp करें या Google Form भरें।",
-    book_whatsapp:"WhatsApp से बुक करें",
-    google_form:"Google Form भरें",
-    experience:"त्वरित सेवा • भरोसेमंद ड्राइवर • 15+ साल अनुभव",
-    spot_title:"लोकप्रिय तिरुमला दर्शनीय स्थल"
-  }
+const tr = {
+    en: {
+        title: "Tirumala One Day Tour",
+        papa: "Papavinashanam",
+        aakash: "Aakash Ganga",
+        venu: "Sri Venu Gopala Swamy Temple",
+        japali: "Japali Hanuman Temple",
+        sila: "Sila Thoranam – Tirumala",
+        padalu: "Srivari Padalu"
+    },
+
+    te: {
+        title: "తిరుమల వన్ డే టూర్",
+        papa: "పాపవినాశనం",
+        aakash: "ఆకాశ గంగా",
+        venu: "శ్రీ వేణుగోపాల స్వామి ఆలయం",
+        japali: "జపాలి హనుమాన్ ఆలయం",
+        sila: "శిలా తోరణం – తిరుమల",
+        padalu: "శ్రీVari పాదాలు"
+    },
+
+    ta: {
+        title: "திருமலா ஒரு நாள் சுற்றுலா",
+        papa: "பாபவிநாசனம்",
+        aakash: "ஆகாஷ் கங்கா",
+        venu: "ஸ்ரீ வேணுகோபால ஸ்வாமி கோவில்",
+        japali: "ஜபாலி ஹனுமான் கோவில்",
+        sila: "சிலா தோரணம் – திருமலை",
+        padalu: "ஸ்ரீவரி படல்கள்"
+    },
+
+    kn: {
+        title: "ತಿರುಮಲ ಒಂದು ದಿನದ ಪ್ರವಾಸ",
+        papa: "ಪಾಪವಿನಾಶನಂ",
+        aakash: "ಆಕಾಶ ಗಂಗಾ",
+        venu: "ಶ್ರೀ ವೇಣುಗೋಪಾಲ ಸ್ವಾಮಿ ದೇವಸ್ಥಾನ",
+        japali: "ಜಪಾಲಿ ಹನುಮಾನ ದೇವಸ್ಥಾನ",
+        sila: "ಶಿಲಾ ತೋರಣಂ – ತಿರುಮಲ",
+        padalu: "ಶ್ರೀ ವರೀ ಪದಗಳು"
+    },
+
+    mr: {
+        title: "तिरुमला वन डे टूर",
+        papa: "पापविनाशन",
+        aakash: "आकाश गंगा",
+        venu: "श्री वेणुगोपाल स्वामी मंदिर",
+        japali: "जपली हनुमान मंदिर",
+        sila: "शिला तोरणम – तिरुमला",
+        padalu: "श्रीवारी पादालु"
+    },
+
+    hi: {
+        title: "तिरुमला वन डे टूर",
+        papa: "पापविनाशनम",
+        aakash: "आकाश गंगा",
+        venu: "श्री वेणुगोपाल स्वामी मंदिर",
+        japali: "जपली हनुमान मंदिर",
+        sila: "शिला तोरणम – तिरुमला",
+        padalu: "श्रीवारी पादालु"
+    }
 };
 
-/* APPLY LANGUAGE */
-function setLang(lang){
-  document.querySelectorAll("[data-key]").forEach(el=>{
-    el.textContent = translations[lang][el.dataset.key];
-  });
+function changeLang() {
+    let L = document.getElementById("lang").value;
+    document.getElementById("title").innerHTML = tr[L].title;
+    document.getElementById("papa").innerHTML = tr[L].papa;
+    document.getElementById("aakash").innerHTML = tr[L].aakash;
+    document.getElementById("venu").innerHTML = tr[L].venu;
+    document.getElementById("japali").innerHTML = tr[L].japali;
+    document.getElementById("sila").innerHTML = tr[L].sila;
+    document.getElementById("padalu").innerHTML = tr[L].padalu;
 }
-</script>
 
-<script>
-/* PACKAGES (same as your previous data) */
-const driverName = "Raju Naik";
-const driverNumber = "919154095125";
-
-const packages = [
-  { title:"Sree Vari Padalu, Tirumala", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgNhA5eywPCrjipY8W9CmmiDQ0YD0jO_ENZUYmlQuB6_UK9hBTKP_m56M&s", short:"Sacred footprints.", long:"Sree Vari Padalu are believed to be the first footsteps of Lord Venkateswara." },
-  { title:"Sila Thoranam", img:"https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxJ7O8YmvoZYAGezAUYNgzxnb1JEs3gy-8NNPCQHhpwOEV5GIAGWsqnKcZYRD-2wboeIY86LrZI7vaiFdDFt743ej0zV9RuGbgAAVqM9YVJ6IWz2_sGjwqMVz6m-L0I5_tOm43UkA=s520-w520-h416-n-k-no", short:"Natural rock arch.", long:"A rare natural rock formation millions of years old." },
-  { title:"Papavinasanam", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjQKCOUX8qe4JhGLolCec5uaHPWOf_JMS1N89RE7c7U1K-mnyN0hyMvAI&s", short:"Holy waterfall.", long:"A sacred waterfall believed to wash away sins." },
-  { title:"Akasha Ganga", img:"https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyDCOzxi4EmSOa4TULBuuPqN4LFEChwrZUWbSChkC109oelmQ4Kj1x0x5cinp0Gy51ybFJExcrFOiUgy-hr4dNCX-DmzqNf4tGA-tZfb2WbFAa451SDY-3eBGPGoek3q8d176tf6g=s1328-w720-h1328-rw", short:"Ritual water source.", long:"Holy water used for daily rituals at Tirumala Temple." },
-  { title:"Venu Gopala Swamy Temple", img:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZHhZ_7A_o3ry0OkEvjgAiL8rtBFAjnsJLMrmJqQjWRhcXU4YQjN8wSvI&s", short:"Ancient Krishna temple.", long:"A hidden gem near Papavinasanam." },
-  { title:"Japali Theertham", img:"https://lh3.googleusercontent.com/gps-cs-s/AG0ilSz9sTA8deK5pRXqucjul2ncN4ZzM1kwMt3zMShcWCn0p3udbtIb1RchazsydgeVdy_HrTfLn-xgzXpYld-GcZyr9akevUiyIJgHwN19HJ3ZfNMMAWN5FWcJtHdHjs0SbOMhm0M=s520-w520-h416-n-k-no", short:"Forest temple.", long:"Temple dedicated to Lord Hanuman inside deep forest." }
-];
-
-const grid = document.getElementById("packagesGrid");
-
-packages.forEach((p,i)=>{
-  grid.innerHTML += `
-    <div class="card">
-      <img src="${p.img}">
-      <div class="body">
-        <h3>${p.title}</h3>
-        <p>${p.short}</p>
-      </div>
-    </div>`;
-});
+// default language
+changeLang();
 </script>
 
 </body>
