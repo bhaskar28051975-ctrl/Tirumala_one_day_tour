@@ -17,32 +17,44 @@
     .title { font-size: 30px; margin: 0; font-weight: bold; }
     .subtitle { margin-top: 4px; font-size: 17px; }
 
+    /* Language Buttons */
     .lang-box { text-align: center; margin: 15px 0; }
     .lang-btn {
-        padding: 6px 16px; border: none; margin: 3px;
-        background: #005aa7; color: #fff; border-radius: 4px;
+        padding: 7px 16px; border: none; margin: 3px;
+        background: #005aa7; color: #fff; border-radius: 5px;
+        font-size: 14px;
     }
 
-    .cards { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 15px; }
+    /* Cards */
+    .cards { display: grid; grid-template-columns: 1fr; gap: 15px; padding: 15px; }
     .card {
-        background: white; border-radius: 8px; padding: 10px;
+        background: white; border-radius: 10px; padding: 10px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    .card img { width: 100%; border-radius: 6px; }
-    .card-title { font-size: 18px; font-weight: bold; margin-top: 8px; }
+    .card img { width: 100%; border-radius: 10px; }
+    .card-title { font-size: 20px; font-weight: bold; margin-top: 10px; }
     .card-desc { font-size: 15px; color: #444; margin-top: 5px; }
 
     /* Popup */
-    .popup {
-        display: none; position: fixed; top:0; left:0; right:0; bottom:0;
-        background: rgba(0,0,0,0.8); justify-content:center; align-items:center;
+    .popup-overlay {
+        display: none;
+        position: fixed;
+        top:0; left:0; width:100%; height:100%;
+        background: rgba(0,0,0,0.75);
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
     }
     .popup-content {
-        background:white; padding:15px; width:90%; border-radius:8px;
+        width: 90%; max-width: 350px;
+        background: white; padding: 15px;
+        border-radius: 12px; position: relative;
+        animation: fadeIn 0.3s;
     }
-    .close-btn { background:red; color:white; border:none;
-        padding:6px 12px; float:right; margin-top:-10px; }
-
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.92); }
+        to { opacity: 1; transform: scale(1); }
+    }
 </style>
 </head>
 
@@ -56,232 +68,171 @@
 
 <!-- Language Buttons -->
 <div class="lang-box">
-    <button class="lang-btn" onclick="setLang('en')">English</button>
-    <button class="lang-btn" onclick="setLang('te')">తెలుగు</button>
+    <button class="lang-btn" onclick="changeLang('en')">English</button>
+    <button class="lang-btn" onclick="changeLang('te')">తెలుగు</button>
+    <button class="lang-btn" onclick="changeLang('ta')">Tamil</button>
+    <button class="lang-btn" onclick="changeLang('kn')">Kannada</button>
+    <button class="lang-btn" onclick="changeLang('mr')">Marathi</button>
+    <button class="lang-btn" onclick="changeLang('hi')">Hindi</button>
+</div>
+
+<h2 style="text-align:center;margin:0;padding-bottom:10px;" id="spot_title">Popular Tirumala Sightseeing Spots</h2>
+
+<div id="cardsContainer" class="cards"></div>
+
+<!-- ================= POPUP ================= -->
+<div id="popupModal" class="popup-overlay">
+    <div class="popup-content">
+        <span onclick="closePopup()" style="position:absolute; right:15px; top:10px; font-size:24px; cursor:pointer;">×</span>
+
+        <img id="popupImg" src="" style="width:100%;border-radius:10px;">
+        <h2 id="popupTitle" style="text-align:center;"></h2>
+        <p id="popupDesc" style="text-align:center;color:#444;"></p>
+    </div>
 </div>
 
 <script>
-/* ---------- IMAGES FROM GITHUB (RAW LINKS) ---------- */
+/* Image Paths */
 const images = [
-  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/temple1.jpg",
-  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/temple2.jpg",
-  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/temple6.jpg",
-  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/temple4.jpg",
-  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/temple5.jpg",
-  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/temple3.jpg"
-];
-/* ------------ TOUR CARDS CONTENT ------------ */
-
-const tourData = [
-  {
-    title_en: "Papavinasanam – View Point",
-    title_te: "పాపవినాశనం – వ్యూ పాయింట్",
-    desc_en: "A holy theertham where devotees take a dip to wash away sins.",
-    desc_te: "భక్తులు తమ పాపాలు తొలగించడానికి స్నానం చేసే పవిత్ర తీర్థం.",
-    img: images[0]
-  },
-  {
-    title_en: "Akasha Ganga Theertham",
-    title_te: "ఆకాశగంగా తీర్థం",
-    desc_en: "Sacred waterfall whose water is used for Sri Balaji Abhishekam.",
-    desc_te: "శ్రీ బాలాజీ అభిషేకం కోసం ఉపయోగించే పవిత్ర జలపాతం.",
-    img: images[1]
-  },
-  {
-    title_en: "Srivari Paadalu",
-    title_te: "శ్రీవారి పాదాలు",
-    desc_en: "Divine footprints of Lord Venkateswara on the hilltop.",
-    desc_te: "వెంకటేశ్వర స్వామివారి దివ్య పాదచిహ్నాలు.",
-    img: images[2]
-  },
-  {
-    title_en: "Venugopala Temple",
-    title_te: "వేణుగోపాల మందిరం",
-    desc_en: "Ancient temple dedicated to Lord Krishna.",
-    desc_te: "శ్రీ కృష్ణుడికి అంకితమైన పురాతన ఆలయం.",
-    img: images[3]
-  },
-  {
-    title_en: "Sila Thoranam",
-    title_te: "శిలా తోరణం",
-    desc_en: "Natural rock arch formation, a rare geological wonder.",
-    desc_te: "సహజ రాతి తోరణం — అరుదైన భూగర్భ అద్భుతం.",
-    img: images[4]
-  },
-  {
-    title_en: "Japali Theertham",
-    title_te: "జపాలి తీర్థం",
-    desc_en: "Sacred forest pond linked to Lord Hanuman.",
-    desc_te: "పవిత్ర తీర్థం — హనుమంతునితో సంబంధం కలదు.",
-    img: images[5]
-  }
+    "images/temple1.jpg",
+    "images/.jpg",
+    "images/temple3.jpg",
+    "images/temple4.jpg",
+    "images/temple5.jpg",
+    "images/temple6.jpg"
 ];
 
+/* Multi-language Titles */
+const titles = {
+    en: ["Papavinasanam", "Akasha Ganga", "Srivari Paadalu", "Venugopala Temple", "Sila Thoranam", "Japali Theertham"],
+    te: ["పాపవినాశనం", "ఆకాశగంగా", "శ్రీవారి పాదాలు", "వేణుగోపాల మందిరం", "శిలా తోరణం", "జపాలి తీర్థం"],
+    ta: ["பாபவிநாசனம்", "ஆகாச கங்கா", "ஸ்ரீவரி பாதங்கள்", "வேணுகோபாலர் கோவில்", "சிலா தோரணம்", "ஜபாலி தீர்த்தம்"],
+    kn: ["ಪಾಪವಿನಾಶನಂ", "ಆಕಾಶಗಂಗಾ", "ಶ್ರಿವಾರಿಪಾದಗಳು", "ವೇಣುಗೋಪಾಲ ದೇವಾಲಯ", "ಶಿಲಾ ತೋರಣಂ", "ಜಪಾಲಿ ತೀರ್ಥಂ"],
+    mr: ["पापविनाशनम", "आकाश गंगा", "श्रीवारी पादालु", "वेनुगोपाल मंदिर", "शिला तोरणम्", "जपली तीर्थम्"],
+    hi: ["पापविनाशनम्", "आकाश गंगा", "श्रीवारी पादम", "वेनुगोपाल मंदिर", "शिला तोरण", "जपली तीर्थ"]
+};
 
-function loadCards(lang = "en") {
-    const container = document.createElement("div");
-    container.className = "cards";
+/* Multi-language Descriptions */
+const desc = {
+    en: [
+        "Holy spot believed to wash away sinshhhjjjjjjjhhhggghhjjjjj.",
+        "Water used for Sri Balaji Abhishekam.",
+        "Sacred footprints of Lord Venkateswara.",
+        "Ancient temple of Lord Krishna.",
+        "Natural rock arch formation.",
+        "Sacred forest pond linked to Lord Hanuman."
+    ],
+    te: [
+        "పాపాలను తొలగించే పవిత్ర స్థలం.",
+        "అభిషేకానికి ఉపయోగించే తీర్థం.",
+        "వెంకటేశ్వర స్వామి పాదాలు.",
+        "శ్రీ కృష్ణుడి పురాతన ఆలయం.",
+        "సహజ రాతి తోరణం.",
+        "హనుమంతునితో సంబంధం ఉన్న తీర్థం."
+    ],
+    ta: [
+        "பாவங்களை நீக்கும் புனித இடம்.",
+        "அபிஷேகத்திற்கு பயன்படுத்தப்படும் நீர்.",
+        "ஸ்ரீ வெங்கடேஸ்வரரின் புனித பாதங்கள்.",
+        "இறைவன் கிருஷ்ணருக்கு அர்ப்பணிக்கப்பட்ட கோவில்.",
+        "இயற்கை கல் வளைவு அமைப்பு.",
+        "அனுமன் தொடர்புடைய தீர்த்தம்."
+    ],
+    kn: [
+        "ಪಾಪಗಳನ್ನು ನಿವಾರಿಸುವ ಪವಿತ್ರ ಸ್ಥಳ.",
+        "ಅಭಿಷೇಕಕ್ಕಾಗಿ ಬಳಸುವ ತೀರ್ಥ.",
+        "ಶ್ರೀ ವೆಂಕಟೇಶ್ವರರ ಪವಿತ್ರ ಪಾದಗಳು.",
+        "ಕೃಷ್ಣನಿಗೆ ಸಮರ್ಪಿತ ದೇವಾಲಯ.",
+        "ಸಹಜ ಶಿಲಾ ರಚನೆ.",
+        "ಹನುಮಂತನಿಗೆ ಸಂಬಂಧಿಸಿದ ತೀರ್ಥ."
+    ],
+    mr: [
+        "पाप दूर करण्याचे पवित्र ठिकाण.",
+        "अभिषेकासाठी वापरले जाणारे पवित्र जल.",
+        "श्री वेंकटेश्वरांचे पवित्र पादचिन्ह.",
+        "भगवान कृष्णाचे प्राचीन मंदिर.",
+        "नैसर्गिक शिला कमान.",
+        "हनुमानाशी संबंधित पवित्र तीर्."
+    ],
+    hi: [
+        "पाप मिटाने वाला पवित्र स्थान.",
+        "अभिषेक में उपयोग होने वाला जल.",
+        "भगवान वेंकटेश्वर के पवित्र चरणचिन्ह.",
+        "भगवान कृष्ण का प्राचीन मंदिर.",
+        "प्राकृतिक चट्टान का मेहराब.",
+        "हनुमानजी से जुड़ा पवित्र तीर्थ."
+    ]
+};
 
-    tourData.forEach((t, index) => {
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-        <img src="${t.img}">
-        <p class="card-title">${lang === "en" ? t.title_en : t.title_te}</p>
-        <p class="card-desc">${lang === "en" ? t.desc_en : t.desc_te}</p>
-        <button onclick="openPopup(${index})"
-          style="margin-top:8px;background:#005aa7;color:white;border:none;padding:8px 14px;border-radius:5px;">
-          View Details
-        </button>
-        `;
-        container.appendChild(card);
-    });
+let titles_global = titles;
+let desc_global = desc;
 
-    document.body.appendChild(container);
+/* Load Cards */
+function loadCards(lan = "en") {
+    const box = document.getElementById("cardsContainer");
+    box.innerHTML = "";
+
+    for (let i = 0; i < 6; i++) {
+        box.innerHTML += `
+        <div class="card">
+            <img src="${images[i]}">
+            <p class="card-title">${titles[lan][i]}</p>
+            <p class="card-desc">${desc[lan][i]}</p>
+
+            <button 
+                onclick="openPopup(${i}, '${lan}')"
+                style="margin-top:10px;padding:6px 12px;background:#005aa7;color:white;border:none;border-radius:5px;">
+                Details
+            </button>
+        </div>`;
+    }
 }
 
 loadCards();
 
+/* Popup */
+function openPopup(i, lan) {
+    document.getElementById("popupImg").src = images[i];
+    document.getElementById("popupTitle").innerText = titles_global[lan][i];
+    document.getElementById("popupDesc").innerText = desc_global[lan][i];
 
-/* ------------ POPUP ------------ */
-function openPopup(i) {
-    document.getElementById("popup_title").innerText = tourData[i].title_en;
-    document.getElementById("popup_desc").innerText = tourData[i].desc_en;
-    document.getElementById("popup").style.display = "flex";
+    document.getElementById("popupModal").style.display = "flex";
 }
 
 function closePopup() {
-    document.getElementById("popup").style.display = "none";
+    document.getElementById("popupModal").style.display = "none";
 }
 
-</script>
-
-<!-- ---------- POPUP HTML ---------- -->
-<div id="popup" class="popup">
-  <div class="popup-content">
-    <button class="close-btn" onclick="closePopup()">X</button>
-    <h2 id="popup_title"></h2>
-    <p id="popup_desc"></p>
-
-    <a href="https://wa.me/9154095125?text=I want Tirumala One Day Tour details"
-       style="display:block;background:#28a745;color:white;text-align:center;
-       padding:10px;border-radius:5px;margin-top:15px;text-decoration:none;">
-       📲 Send Enquiry on WhatsApp
-    </a>
-  </div>
-</div>
-
-<script>
-/* ---------------- IMAGE FILES FROM YOUR GITHUB ---------------- */
-
-const images = [
-  "images/Papavinasanam.jpg",
-  "images/AkashaGanga.jpg",
-  "images/SrivariPadalu.jpg",
-  "images/Venugopala.jpg",
-  "images/SilaThoranam.jpg",
-  "images/Japali.jpg"
-];
-
-/* ---------------- LANGUAGE SWITCH ---------------- */
-
-document.getElementById("langSelect").addEventListener("change", function () {
-    const lang = this.value;
-    switchLanguage(lang);
-});
-
-function switchLanguage(lan) {
-
-    // Titles
+/* Language Change */
+function changeLang(lan) {
     document.getElementById("site_title").innerText =
-      lan === "en" ? "Tirumala One Day Tour" : 
-      lan === "te" ? "తిరుమల ఒక రోజు టూర్" :
-      lan === "ta" ? "திருமலா ஒருநாள் பயணம்" :
-      lan === "kn" ? "ತಿರುಮಲಾ ಒಂದು ದಿನದ ಪ್ರವಾಸ" :
-      lan === "mr" ? "तिरुमला एक दिवसाची सहल" :
-      "तिरुमला एक दिवसीय यात्रा";
+        lan === "en" ? "Tirumala One Day Tour" :
+        lan === "te" ? "తిరుమల ఒక రోజు టూర్" :
+        lan === "ta" ? "திருமலா ஒருநாள் பயணம்" :
+        lan === "kn" ? "ತಿರುಮಲಾ ಒಂದು ದಿನದ ಪ್ರವಾಸ" :
+        lan === "mr" ? "तिरुमला एक दिवसाची सहल" :
+        "तिरुमला एक दिवसीय यात्रा";
 
-    // Sub Title
     document.getElementById("site_by").innerText =
-      lan === "en" ? "by Raju Naik – Tirumala Taxi Driver" :
-      lan === "te" ? "రాజు నాయక్ – తిరుమల టాక్సీ డ్రైవర్" :
-      lan === "ta" ? "ராஜு நாயக் – திருமலா டாக்ஸி டிரைவர்" :
-      lan === "kn" ? "ರಾಜು ನಾಯಕ್ – ತಿರುಮಲಾ ಟ್ಯಾಕ್ಸಿ ಚಾಲಕ" :
-      lan === "mr" ? "राजू नाईक – तिरुमला टॅक्सी ड्रायव्हर" :
-      "राजू नाईक – तिरुमला टैक्सी ड्राइवर";
+        lan === "en" ? "by Raju Naik – Tirumala Taxi Driver" :
+        lan === "te" ? "రాజు నాయక్ – తిరుమల టాక్సీ డ్రైవర్" :
+        lan === "ta" ? "ராஜு நாயக் – திருமலா டாக்ஸி டிரைவர்" :
+        lan === "kn" ? "ರಾಜು ನಾಯಕ್ – ತಿರುಮಲಾ ಟ್ಯಾಕ್ಸಿ ಚಾಲಕ" :
+        lan === "mr" ? "राजू नाईक – तिरुमला टॅक्सी ड्रायव्हर" :
+        "राजू नाईक – तिरुमला टैक्सी ड्राइवर";
 
-    // Contact
-    document.getElementById("site_contact").innerText =
-      "📞 +91 91540 95125";
+    document.getElementById("spot_title").innerText =
+        lan === "en" ? "Popular Tirumala Sightseeing Spots" :
+        lan === "te" ? "తిరుమల ప్రసిద్ధ దర్శనీయ స్థలాలు" :
+        lan === "ta" ? "திருமலாவின் பிரபல சுற்றுலா தலங்கள்" :
+        lan === "kn" ? "ಜನಪ್ರಿಯ ತಿರುಮಲಾ ಪ್ರವಾಸಿ ಸ್ಥಳಗಳು" :
+        lan === "mr" ? "तिरुमला येथील लोकप्रिय स्थळे" :
+        "तिरुमला के प्रसिद्ध दर्शनीय स्थल";
 
-    // Popular heading
-    document.getElementById("popular_heading").innerText =
-      lan === "en" ? "Popular Tirumala Sightseeing Spots" :
-      lan === "te" ? "తిరుమలలో ప్రసిద్ధ దర్శనీయ స్థలాలు" :
-      lan === "ta" ? "திருமலாவின் பிரபல சுற்றுலா தளங்கள்" :
-      lan === "kn" ? "ಜನಪ್ರಿಯ ತಿರುಮಲಾ ಪ್ರವಾಸಿ ಸ್ಥಳಗಳು" :
-      lan === "mr" ? "तिरुमलातील लोकप्रिय पर्यटन स्थळे" :
-      "तिरुमला के प्रसिद्ध दर्शनीय स्थल";
-
-    // Reload Cards
-    document.getElementById("cardsGrid").innerHTML = "";
-    renderCardsLanguage(lan);
+    loadCards(lan);
 }
-
-/* ---------------- RENDER CARDS IN LANGUAGE ---------------- */
-
-function renderCardsLanguage(lan) {
-    const grid = document.getElementById("cardsGrid");
-
-    const spotTitles = {
-      en: ["Papavinasanam", "Akasha Ganga", "Srivari Padalu", "Venugopala Temple", "Sila Thoranam", "Japali Theertham"],
-      te: ["పాపవినాశనం", "ఆకాశగంగా", "శ్రీవారి పాదాలు", "వేణుగోపాల మందిరం", "శిలాతోరణం", "జపాలి తీర్థం"],
-    };
-
-    const spotDesc = {
-      en: [
-        "Holy waterfall believed to wash away sins.",
-        "Water used in temple rituals and Abhishekam.",
-        "Sacred footprints of Lord Venkateswara.",
-        "Ancient temple of Lord Krishna.",
-        "Natural rock arch formation.",
-        "Forest pond and Hanuman temple."
-      ],
-      te: [
-        "పాపాలను తొలగించే పవిత్ర జలపాతం.",
-        "అభిషేకం కోసం ఉపయోగించే తీర్థం.",
-        "శ్రీవారి దివ్య పాదాలు.",
-        "శ్రీ కృష్ణుడి పురాతన ఆలయం.",
-        "సహజ రాతి తోరణం.",
-        "హనుమంతునికి సంబంధించిన పవిత్ర తీర్థం."
-      ]
-    };
-
-    for (let i = 0; i < images.length; i++) {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.innerHTML = `
-        <img src="${images[i]}" />
-        <div class="body">
-          <h3>${spotTitles[lan][i]}</h3>
-          <p>${spotDesc[lan][i]}</p>
-          <a class="btn" href="#" onclick="openModal(${i});return false;">Details</a>
-        </div>`;
-      grid.appendChild(div);
-    }
-}
-
-/* ---------------- INITIAL LOAD ---------------- */
-
-renderCardsLanguage("en");
 
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
