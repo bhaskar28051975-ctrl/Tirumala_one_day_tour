@@ -1,251 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tirumala One Day Tour – by Raju Naik</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tirumala One Day Tour</title>
+
 <style>
-  :root{ --accent:#0b8f6b; --dark:#083a61; --card-bg:#ffffff; --muted:#666; }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f6f3;color:#111}
-  /* Banner */
-  .hero{
-    position:relative;
-    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThAlK2v-XnN6bvgiY4AGhg82oo0rIGT3BMWeCYIm-7jA&s=10') center/cover no-repeat;
-    padding: 60px 14px 110px;
-    color:#fff;
-    text-align:center;
-  }
-  .hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.45)}
-  .hero .inner{position:relative;z-index:2;max-width:980px;margin:0 auto}
-  .hero h1{margin:0;font-size:26px;font-weight:800;text-shadow:1px 1px 6px rgba(0,0,0,0.6)}
-  .hero h2{margin:8px 0 0;font-size:16px;color:#ffeaa7;font-weight:600}
-  .hero .signature{margin-top:14px;background:rgba(0,0,0,0.35);display:inline-block;padding:8px 14px;border-radius:20px;font-weight:700}
+    body { font-family: Arial; margin: 0; background: #f4f4f4; }
 
-  /* Driver banner */
-  .driver-banner{display:none;position:relative;max-width:980px;margin:18px auto;padding:12px;border-radius:12px;background:linear-gradient(90deg,rgba(0,0,0,0.65),rgba(0,0,0,0.35));color:#fff;box-shadow:0 8px 20px rgba(0,0,0,0.15);}
-  .driver-banner .left{display:flex;align-items:center;gap:12px}
-  .driver-photo{width:96px;height:96px;border-radius:10px;object-fit:cover;border:3px solid rgba(255,255,255,0.9)}
-  .driver-meta{text-align:left}
-  .driver-meta .name{font-weight:800;font-size:18px}
-  .driver-meta .small{opacity:0.95;font-size:14px;margin-top:6px}
-  .driver-meta .price{margin-top:8px;background:rgba(255,255,255,0.07);display:inline-block;padding:6px 8px;border-radius:8px;font-weight:700}
-  .driver-wa{display:inline-block;margin-left:16px;background:#25D366;color:#063;padding:8px 12px;border-radius:8px;text-decoration:none;font-weight:800}
+    header {
+        text-align: center;
+        padding: 25px 10px;
+        background: linear-gradient(135deg, #005aa7, #00c6fb);
+        color: white;
+    }
+    .title { font-size: 30px; margin: 0; font-weight: bold; }
+    .subtitle { margin-top: 4px; font-size: 17px; }
 
-  /* language selector */
-  .lang-wrap{max-width:980px;margin:14px auto;padding:0 12px;text-align:center}
-  .lang-wrap select{padding:8px 10px;border-radius:8px;border:1px solid #ddd;font-size:15px}
+    .lang-box { text-align: center; margin: 15px 0; }
+    .lang-btn {
+        padding: 6px 16px; border: none; margin: 3px;
+        background: #005aa7; color: #fff; border-radius: 4px;
+    }
 
-  /* rest */
-  .container{max-width:980px;margin:14px auto;padding:0 12px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:12px}
-  .card{background:var(--card-bg);border-radius:10px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-  .card img{width:100%;height:170px;object-fit:cover;display:block}
-  .card .body{padding:12px}
-  .btn{background:var(--accent);color:#fff;padding:9px 12px;border-radius:8px;text-decoration:none;display:inline-block;font-weight:700}
-  .inquiry{background:#fff;padding:12px;border-radius:10px;margin-top:18px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
-  .inquiry input,.inquiry textarea{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:1px solid #ddd;font-size:14px}
-  footer{margin:28px 0;text-align:center;color:#666;font-size:14px}
-  @media(max-width:720px){.driver-banner{padding:10px}.driver-photo{width:76px;height:76px}}
+    .cards { display: grid; grid-template-columns: 1fr; gap: 12px; padding: 15px; }
+    .card {
+        background: white; border-radius: 8px; padding: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .card img { width: 100%; border-radius: 6px; }
+    .card-title { font-size: 18px; font-weight: bold; margin-top: 8px; }
+    .card-desc { font-size: 15px; color: #444; margin-top: 5px; }
+
+    /* Popup */
+    .popup {
+        display: none; position: fixed; top:0; left:0; right:0; bottom:0;
+        background: rgba(0,0,0,0.8); justify-content:center; align-items:center;
+    }
+    .popup-content {
+        background:white; padding:15px; width:90%; border-radius:8px;
+    }
+    .close-btn { background:red; color:white; border:none;
+        padding:6px 12px; float:right; margin-top:-10px; }
+
 </style>
 </head>
+
 <body>
 
-<!-- HERO / BANNER -->
-<section class="hero" aria-label="Tirumala banner">
-  <div class="inner">
-    <h1 id="site_title">Tirumala One Day Tour</h1>
-    <h2 id="site_by">by Raju Naik – Tirumala Taxi Driver</h2>
-    <div class="signature" id="site_contact">📞 +91 91540 95125</div>
-  </div>
-</section>
+<header>
+    <h1 class="title" id="site_title">Tirumala One Day Tour</h1>
+    <p class="subtitle" id="site_by">by Raju Naik – Tirumala Taxi Driver</p>
+    <p id="site_contact">📞 +91 91540 95125</p>
+</header>
 
-<!-- DRIVER BANNER (hidden until driver param) -->
-<section class="driver-banner" id="driverBanner" aria-hidden="true">
-  <div class="left">
-    <img id="driverPhoto" class="driver-photo" src="" alt="Driver photo" />
-    <div class="driver-meta">
-      <div class="name" id="driverName">Driver Name</div>
-      <div class="small" id="driverPhone">Phone: -</div>
-      <div class="small" id="driverTaxi">Taxi No: -</div>
-      <div class="price" id="driverPrice">Price: -</div>
-    </div>
-  </div>
-  <div style="text-align:center; margin-top:10px;">
-    <a id="driverWA" class="driver-wa" href="#" target="_blank" rel="noopener">Chat on WhatsApp</a>
-  </div>
-</section>
-
-<!-- LANGUAGE SELECTOR -->
-<div class="lang-wrap">
-  <select id="langSelect" aria-label="Select language" onchange="setLang(this.value)">
-    <option value="en">English</option>
-    <option value="te">తెలుగు</option>
-    <option value="ta">தமிழ்</option>
-    <option value="kn">ಕನ್ನಡ</option>
-    <option value="mr">मराठी</option>
-    <option value="hi">हिन्दी</option>
-  </select>
-</div>
-
-<!-- MAIN -->
-<div class="container">
-  <h2 id="popular_heading" style="text-align:center;color:#083a61">Popular Tirumala Sightseeing Spots</h2>
-  <div class="grid" id="cardsGrid" aria-live="polite"></div>
-
-  <!-- QUICK INQUIRY -->
-  <div class="inquiry" id="inquiryBox">
-    <h3 id="inq_title">Quick Inquiry / Book</h3>
-    <input id="inq_name" type="text" placeholder="Your name" />
-    <input id="inq_phone" type="tel" placeholder="Phone number" />
-    <textarea id="inq_msg" rows="3" placeholder="Your message (date, number of people, pickup point)"></textarea>
-    <a id="inq_submit" class="btn" href="#" onclick="sendInquiry();return false;">Send via WhatsApp</a>
-  </div>
-
-  <footer>© 2025 | Powered by <strong>BR Info Tech Pvt Ltd</strong></footer>
-</div>
-
-<!-- Modal overlay -->
-<div id="modalOverlay" class="modal-overlay" onclick="closeModal()">
-  <div class="modal" role="dialog" aria-modal="true" onclick="event.stopPropagation()">
-    <img id="modalImage" src="" alt="">
-    <div class="cont">
-      <h3 id="modalTitle"></h3>
-      <p id="modalDesc"></p>
-      <a id="modalWA" class="btn" href="#" target="_blank" rel="noopener">Book on WhatsApp</a>
-      <a class="close" href="#" onclick="closeModal();return false;">Close</a>
-    </div>
-  </div>
-</div>
-
-<!-- Floating WhatsApp -->
-<div class="wa-float" aria-hidden="false">
-  <a id="floatWA" href="https://wa.me/919154095125" target="_blank" title="Chat on WhatsApp">💬</a>
+<!-- Language Buttons -->
+<div class="lang-box">
+    <button class="lang-btn" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('te')">తెలుగు</button>
 </div>
 
 <script>
-/* ========== DRIVER DATA ========== 
-   Edit photo paths below if you uploaded images to a different location.
-   Default expects:
-     images/s1.jpg  (Srinu)
-     images/s2.jpg  (Kumar)
-*/
-const DRIVERS = {
-  "S1": { id: "S1", name: "Srinu", phone: "9848056765", taxi: "AP 03 U 7788", price: "150", photo: "images/s1.jpg" },
-  "S2": { id: "S2", name: "Kumar", phone: "9000012345", taxi: "AP 39 H 6550", price: "150", photo: "images/s2.jpg" }
-};
-
-/* sample images and simplified language data (keeps your cards) */
+/* ---------- IMAGES FROM GITHUB (RAW LINKS) ---------- */
 const images = [
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjQKCOUX8qe4JhGLolCec5uaHPWOf_JMS1N89RE7c7U1K-mnyN0hyMvAI&s",
-  "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSyDCOzxi4EmSOa4TULBuuPqN4LFEChwrZUWbSChkC109oelmQ4Kj1x0x5cinp0Gy51ybFJExcrFOiUgy-hr4dNCX-DmzqNf4tGA-tZfb2WbFAa451SDY-3eBGPGoek3q8d176tf6g=s1328-w720-h1328-rw",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgNhA5eywPCrjipY8W9CmmiDQ0YD0jO_ENZUYmlQuB6_UK9hBTKP_m56M&s",
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZHhZ_7A_o3ry0OkEvjgAiL8rtBFAjnsJLMrmJqQjWRhcXU4YQjN8wSvI&s",
-  "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSxJ7O8YmvoZYAGezAUYNgzxnb1JEs3gy-8NNPCQHhpwOEV5GIAGWsqnKcZYRD-2wboeIY86LrZI7vaiFdDFt743ej0zV9RuGbgAAVqM9YVJ6IWz2_sGjwqMVz6m-L0I5_tOm43UkA=s520-w520-h416-n-k-no",
-  "https://lh3.googleusercontent.com/gps-cs-s/AG0ilSz9sTA8deK5pRXqucjul2ncN4ZzM1kwMt3zMShcWCn0p3udbtIb1RchazsydgeVdy_HrTfLn-xgzXpYld-GcZyr9akevUiyIJgHwN19HJ3ZfNMMAWN5FWcJtHdHjs0SbOMhm0M=s520-w520-h416-n-k-no"
+  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/papavinasanam.jpg",
+  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/akashaganga.jpg",
+  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/srivari_padalu.jpg",
+  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/venugopala.jpg",
+  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/silathoranam.jpg",
+  "https://raw.githubusercontent.com/bhaskar28051975-ctrl/Tirumala_one_day_tour/main/images/japalitheertham.jpg"
+];
+/* ------------ TOUR CARDS CONTENT ------------ */
+
+const tourData = [
+  {
+    title_en: "Papavinasanam – View Point",
+    title_te: "పాపవినాశనం – వ్యూ పాయింట్",
+    desc_en: "A holy theertham where devotees take a dip to wash away sins.",
+    desc_te: "భక్తులు తమ పాపాలు తొలగించడానికి స్నానం చేసే పవిత్ర తీర్థం.",
+    img: images[0]
+  },
+  {
+    title_en: "Akasha Ganga Theertham",
+    title_te: "ఆకాశగంగా తీర్థం",
+    desc_en: "Sacred waterfall whose water is used for Sri Balaji Abhishekam.",
+    desc_te: "శ్రీ బాలాజీ అభిషేకం కోసం ఉపయోగించే పవిత్ర జలపాతం.",
+    img: images[1]
+  },
+  {
+    title_en: "Srivari Paadalu",
+    title_te: "శ్రీవారి పాదాలు",
+    desc_en: "Divine footprints of Lord Venkateswara on the hilltop.",
+    desc_te: "వెంకటేశ్వర స్వామివారి దివ్య పాదచిహ్నాలు.",
+    img: images[2]
+  },
+  {
+    title_en: "Venugopala Temple",
+    title_te: "వేణుగోపాల మందిరం",
+    desc_en: "Ancient temple dedicated to Lord Krishna.",
+    desc_te: "శ్రీ కృష్ణుడికి అంకితమైన పురాతన ఆలయం.",
+    img: images[3]
+  },
+  {
+    title_en: "Sila Thoranam",
+    title_te: "శిలా తోరణం",
+    desc_en: "Natural rock arch formation, a rare geological wonder.",
+    desc_te: "సహజ రాతి తోరణం — అరుదైన భూగర్భ అద్భుతం.",
+    img: images[4]
+  },
+  {
+    title_en: "Japali Theertham",
+    title_te: "జపాలి తీర్థం",
+    desc_en: "Sacred forest pond linked to Lord Hanuman.",
+    desc_te: "పవిత్ర తీర్థం — హనుమంతునితో సంబంధం కలదు.",
+    img: images[5]
+  }
 ];
 
-const lang = {
-  en: {
-    siteTitle: "Tirumala One Day Tour",
-    siteBy: "by Raju Naik – Tirumala Taxi Driver",
-    contact: "📞 +91 91540 95125",
-    popular: "Popular Tirumala Sightseeing Spots",
-    inqTitle: "Quick Inquiry / Booking",
-    inqName: "Your name",
-    inqPhone: "Phone number",
-    inqMsg: "Message (date, people, pickup)",
-    inqBtn: "Send via WhatsApp",
-    spots: [
-      { title: "Papavinasanam", desc: "A sacred waterfall believed to wash away sins. Pilgrims often visit for spiritual cleansing." },
-      { title: "Akasha Ganga", desc: "A holy stream and waterfall whose water is used in temple rituals and daily pujas." },
-      { title: "Sree Vari Padalu", desc: "The sacred footprints (padalu) of Lord Venkateswara atop Narayanagiri." },
-      { title: "Sree Venu Gopala Swamy Temple", desc: "Ancient temple dedicated to Lord Krishna near the Papavinasanam road." },
-      { title: "Sila Thoranam", desc: "A natural rock arch formation — one of the rare geological wonders near Tirumala." },
-      { title: "Japali Theertham", desc: "Forest temple and pond dedicated to Lord Hanuman — peaceful and scenic." }
-    ]
-  }
-};
 
-let currentLang = "en";
+function loadCards(lang = "en") {
+    const container = document.createElement("div");
+    container.className = "cards";
 
-function renderCards() {
-  const grid = document.getElementById("cardsGrid");
-  grid.innerHTML = "";
-  const spots = lang[currentLang].spots;
-  for (let i = 0; i < spots.length; i++) {
-    const card = document.createElement("div");
-    card.className = "card";
-    card.innerHTML = `
-      <img src="${images[i]}" alt="${spots[i].title}">
-      <div class="body">
-        <h3>${spots[i].title}</h3>
-        <p>${spots[i].desc}</p>
-        <div class="actions">
-          <a class="btn" href="#" onclick="openModal(${i});return false;">Details</a>
-        </div>
-      </div>`;
-    grid.appendChild(card);
-  }
+    tourData.forEach((t, index) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+        <img src="${t.img}">
+        <p class="card-title">${lang === "en" ? t.title_en : t.title_te}</p>
+        <p class="card-desc">${lang === "en" ? t.desc_en : t.desc_te}</p>
+        <button onclick="openPopup(${index})"
+          style="margin-top:8px;background:#005aa7;color:white;border:none;padding:8px 14px;border-radius:5px;">
+          View Details
+        </button>
+        `;
+        container.appendChild(card);
+    });
+
+    document.body.appendChild(container);
 }
 
-function openModal(i){
-  const spot = lang[currentLang].spots[i];
-  document.getElementById("modalImage").src = images[i];
-  document.getElementById("modalTitle").innerText = spot.title;
-  document.getElementById("modalDesc").innerText = spot.desc;
-  const waText = encodeURIComponent(`Hi, I want details about ${spot.title}`);
-  document.getElementById("modalWA").href = "https://wa.me/919154095125?text="+waText;
-  document.getElementById("modalOverlay").style.display = "flex";
+loadCards();
+
+
+/* ------------ POPUP ------------ */
+function openPopup(i) {
+    document.getElementById("popup_title").innerText = tourData[i].title_en;
+    document.getElementById("popup_desc").innerText = tourData[i].desc_en;
+    document.getElementById("popup").style.display = "flex";
 }
 
-function closeModal(){ document.getElementById("modalOverlay").style.display = "none"; }
-
-function sendInquiry(){
-  const name = document.getElementById("inq_name").value.trim();
-  const phone = document.getElementById("inq_phone").value.trim();
-  const msg = document.getElementById("inq_msg").value.trim();
-  if(!name || !phone){ alert("Please enter name and phone."); return; }
-  const text = `${name} | ${phone} | ${msg}`;
-  const wa = "https://wa.me/919154095125?text="+encodeURIComponent(`Inquiry: ${text}`);
-  window.open(wa,'_blank');
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
 }
 
-/* ========== DRIVER BANNER LOGIC ========== */
-function showDriverFromURL(){
-  const params = new URLSearchParams(window.location.search);
-  const driverId = params.get("driver");
-  const byPhone = params.get("phone");
-  const byTaxi = params.get("taxi");
-  let driver = null;
-  if (driverId && DRIVERS[driverId]) driver = DRIVERS[driverId];
-  else if (byPhone) {
-    for (const k in DRIVERS) if (DRIVERS[k].phone === byPhone) driver = DRIVERS[k];
-  } else if (byTaxi) {
-    const t = byTaxi.replace(/\\s+/g,"").toLowerCase();
-    for (const k in DRIVERS) if (DRIVERS[k].taxi.replace(/\\s+/g,"").toLowerCase() === t) driver = DRIVERS[k];
-  }
-
-  if (driver) {
-    document.getElementById("driverBanner").style.display = "block";
-    document.getElementById("driverBanner").setAttribute("aria-hidden","false");
-    document.getElementById("driverPhoto").src = driver.photo || "";
-    document.getElementById("driverName").innerText = driver.name;
-    document.getElementById("driverPhone").innerText = "Phone: " + driver.phone;
-    document.getElementById("driverTaxi").innerText = "Taxi No: " + driver.taxi;
-    document.getElementById("driverPrice").innerText = "Price: ₹" + driver.price + "/person";
-    document.getElementById("site_title").innerText = "Tirumala One Day Tour – Booked via " + driver.name;
-    document.getElementById("site_contact").innerText = "📞 " + driver.phone;
-    const wa = "https://wa.me/91" + driver.phone + "?text=" + encodeURIComponent("Hello " + driver.name + ", I want to book Tirumala one day tour.\\nDate:\\nPeople:\\nPickup point:");
-    document.getElementById("driverWA").href = wa;
-  }
-}
-
-/* initialize */
-document.addEventListener("DOMContentLoaded", function(){
-  renderCards();
-  showDriverFromURL();
-});
 </script>
+
+<!-- ---------- POPUP HTML ---------- -->
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <button class="close-btn" onclick="closePopup()">X</button>
+    <h2 id="popup_title"></h2>
+    <p id="popup_desc"></p>
+
+    <a href="https://wa.me/9154095125?text=I want Tirumala One Day Tour details"
+       style="display:block;background:#28a745;color:white;text-align:center;
+       padding:10px;border-radius:5px;margin-top:15px;text-decoration:none;">
+       📲 Send Enquiry on WhatsApp
+    </a>
+  </div>
+</div>
+
+<script>
+/* ---------------- IMAGE FILES FROM YOUR GITHUB ---------------- */
+
+const images = [
+  "images/Papavinasanam.jpg",
+  "images/AkashaGanga.jpg",
+  "images/SrivariPadalu.jpg",
+  "images/Venugopala.jpg",
+  "images/SilaThoranam.jpg",
+  "images/Japali.jpg"
+];
+
+/* ---------------- LANGUAGE SWITCH ---------------- */
+
+document.getElementById("langSelect").addEventListener("change", function () {
+    const lang = this.value;
+    switchLanguage(lang);
+});
+
+function switchLanguage(lan) {
+
+    // Titles
+    document.getElementById("site_title").innerText =
+      lan === "en" ? "Tirumala One Day Tour" : 
+      lan === "te" ? "తిరుమల ఒక రోజు టూర్" :
+      lan === "ta" ? "திருமலா ஒருநாள் பயணம்" :
+      lan === "kn" ? "ತಿರುಮಲಾ ಒಂದು ದಿನದ ಪ್ರವಾಸ" :
+      lan === "mr" ? "तिरुमला एक दिवसाची सहल" :
+      "तिरुमला एक दिवसीय यात्रा";
+
+    // Sub Title
+    document.getElementById("site_by").innerText =
+      lan === "en" ? "by Raju Naik – Tirumala Taxi Driver" :
+      lan === "te" ? "రాజు నాయక్ – తిరుమల టాక్సీ డ్రైవర్" :
+      lan === "ta" ? "ராஜு நாயக் – திருமலா டாக்ஸி டிரைவர்" :
+      lan === "kn" ? "ರಾಜು ನಾಯಕ್ – ತಿರುಮಲಾ ಟ್ಯಾಕ್ಸಿ ಚಾಲಕ" :
+      lan === "mr" ? "राजू नाईक – तिरुमला टॅक्सी ड्रायव्हर" :
+      "राजू नाईक – तिरुमला टैक्सी ड्राइवर";
+
+    // Contact
+    document.getElementById("site_contact").innerText =
+      "📞 +91 91540 95125";
+
+    // Popular heading
+    document.getElementById("popular_heading").innerText =
+      lan === "en" ? "Popular Tirumala Sightseeing Spots" :
+      lan === "te" ? "తిరుమలలో ప్రసిద్ధ దర్శనీయ స్థలాలు" :
+      lan === "ta" ? "திருமலாவின் பிரபல சுற்றுலா தளங்கள்" :
+      lan === "kn" ? "ಜನಪ್ರಿಯ ತಿರುಮಲಾ ಪ್ರವಾಸಿ ಸ್ಥಳಗಳು" :
+      lan === "mr" ? "तिरुमलातील लोकप्रिय पर्यटन स्थळे" :
+      "तिरुमला के प्रसिद्ध दर्शनीय स्थल";
+
+    // Reload Cards
+    document.getElementById("cardsGrid").innerHTML = "";
+    renderCardsLanguage(lan);
+}
+
+/* ---------------- RENDER CARDS IN LANGUAGE ---------------- */
+
+function renderCardsLanguage(lan) {
+    const grid = document.getElementById("cardsGrid");
+
+    const spotTitles = {
+      en: ["Papavinasanam", "Akasha Ganga", "Srivari Padalu", "Venugopala Temple", "Sila Thoranam", "Japali Theertham"],
+      te: ["పాపవినాశనం", "ఆకాశగంగా", "శ్రీవారి పాదాలు", "వేణుగోపాల మందిరం", "శిలాతోరణం", "జపాలి తీర్థం"],
+    };
+
+    const spotDesc = {
+      en: [
+        "Holy waterfall believed to wash away sins.",
+        "Water used in temple rituals and Abhishekam.",
+        "Sacred footprints of Lord Venkateswara.",
+        "Ancient temple of Lord Krishna.",
+        "Natural rock arch formation.",
+        "Forest pond and Hanuman temple."
+      ],
+      te: [
+        "పాపాలను తొలగించే పవిత్ర జలపాతం.",
+        "అభిషేకం కోసం ఉపయోగించే తీర్థం.",
+        "శ్రీవారి దివ్య పాదాలు.",
+        "శ్రీ కృష్ణుడి పురాతన ఆలయం.",
+        "సహజ రాతి తోరణం.",
+        "హనుమంతునికి సంబంధించిన పవిత్ర తీర్థం."
+      ]
+    };
+
+    for (let i = 0; i < images.length; i++) {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <img src="${images[i]}" />
+        <div class="body">
+          <h3>${spotTitles[lan][i]}</h3>
+          <p>${spotDesc[lan][i]}</p>
+          <a class="btn" href="#" onclick="openModal(${i});return false;">Details</a>
+        </div>`;
+      grid.appendChild(div);
+    }
+}
+
+/* ---------------- INITIAL LOAD ---------------- */
+
+renderCardsLanguage("en");
+
+</script>
+
 </body>
 </html>
